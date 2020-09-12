@@ -17,6 +17,8 @@ ${view.bwriter}<br />
 <label>내용</label><br />
 ${view.bcontents}<br />
 
-</form>
+<div>
+<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
+</div>
 </body>
 </html>

@@ -36,4 +36,10 @@ public BoardVO view(int bnumber) throws Exception {
 return sql.selectOne(namespace + ".view", bnumber);
 }
 
+//게시물 수정
+@Override
+public void modify(BoardVO vo) throws Exception {
+sql.update(namespace + ".modify", vo);
+}
+
 }

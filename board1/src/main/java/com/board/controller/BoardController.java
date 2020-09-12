@@ -45,9 +45,29 @@ public class BoardController {
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
-		System.out.println("cbn"+bnumber);
 		BoardVO vo = service.view(bnumber);
 		
 		model.addAttribute("view", vo);
 	}
+	
+	// 게시물 수정
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void getModify(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
+
+	 BoardVO vo = service.view(bnumber);
+	   
+	 model.addAttribute("view", vo);
+	}
+	
+	
+	// 게시물 수정
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(BoardVO vo) throws Exception {
+
+	 service.modify(vo);
+	   
+	 return "redirect:/board/view?bnumber=" + vo.getBnumber();
+	}
+	
+	
 }

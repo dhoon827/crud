@@ -17,7 +17,8 @@
 		insert into
 		board2(bnumber,
 		bwriter, btitle, bcontents)
-		values(SEQ_BOARD2.nextval, #{bwriter}, #{btitle},
+		values(SEQ_BOARD2.nextval, #{bwriter},
+		#{btitle},
 		#{bcontents})
 	</insert>
 
@@ -30,4 +31,14 @@
 		where
 		bnumber = #{bnumber}
 	</select>
+
+	<!-- 게시물 수정 -->
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		update board2
+		set
+		btitle = #{btitle},
+		bcontents = #{bcontents},
+		bwriter = #{bwriter}
+		where bnumber = #{bnumber}
+	</update>
 </mapper>
