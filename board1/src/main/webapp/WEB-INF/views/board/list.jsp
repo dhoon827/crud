@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="nav">
+ <%@ include file="../include/nav.jsp" %>
+</div>
 
 	<table>
 		<thead>
