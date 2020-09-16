@@ -43,4 +43,9 @@ public void modify(BoardVO vo) throws Exception {
 
 dao.modify(vo);
 }
+
+//게시물 삭제
+public void delete(int bnumber) throws Exception {
+dao.delete(bnumber);
+}
 }

@@ -20,7 +20,7 @@ ${view.bwriter}<br />
 ${view.bcontents}<br />
 
 <div>
-<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
+<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>,<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 </div>
 </body>
 </html>

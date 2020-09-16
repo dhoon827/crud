@@ -36,9 +36,17 @@
 	<update id="modify" parameterType="com.board.domain.BoardVO">
 		update board2
 		set
-		btitle = #{btitle},
+		btitle =
+		#{btitle},
 		bcontents = #{bcontents},
 		bwriter = #{bwriter}
 		where bnumber = #{bnumber}
 	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete
+		from board2
+		where bnumber = #{bnumber}
+	</delete>
 </mapper>
