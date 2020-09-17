@@ -20,4 +20,7 @@ public interface BoardService {
 	
 	// 게시물 삭제
 	public void delete(int bnumber) throws Exception;
+	
+	// 게시물 총 갯수
+	public int count() throws Exception;
 }

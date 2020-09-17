@@ -40,13 +40,20 @@
 		#{btitle},
 		bcontents = #{bcontents},
 		bwriter = #{bwriter}
-		where bnumber = #{bnumber}
+		where bnumber =
+		#{bnumber}
 	</update>
 
 	<!-- 게시물 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete
 		from board2
-		where bnumber = #{bnumber}
+		where bnumber
+		= #{bnumber}
 	</delete>
+
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+		select count(bnumber) from board2
+	</select>
 </mapper>

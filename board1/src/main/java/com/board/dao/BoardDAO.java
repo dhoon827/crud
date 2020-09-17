@@ -19,4 +19,7 @@ public interface BoardDAO {
 	
 	// 게시뮬 삭제
 	public void delete(int bnumber) throws Exception;
+	
+	// 게시물 총 갯수
+	public int count() throws Exception;
 }

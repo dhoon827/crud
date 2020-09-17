@@ -47,4 +47,10 @@ public void delete(int bnumber) throws Exception {
 sql.delete(namespace + ".delete", bnumber);
 }
 
+//게시물 총 갯수
+@Override
+public int count() throws Exception {
+return sql.selectOne(namespace + ".count"); 
+}
+
 }

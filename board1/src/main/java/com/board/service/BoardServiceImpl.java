@@ -48,4 +48,10 @@ dao.modify(vo);
 public void delete(int bnumber) throws Exception {
 dao.delete(bnumber);
 }
+
+//게시물 총 갯수
+@Override
+public int count() throws Exception {
+return dao.count();
+}
 }
