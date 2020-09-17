@@ -56,4 +56,17 @@
 	<select id="count" resultType="int">
 		select count(bnumber) from board2
 	</select>
+	
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
+	  select 
+	   bnumber, btitle, bcontents, bwriter, bdate, bhits
+	from board2
+	where select bnumber, btitle, bcontents, bwriter, bdate, bhits,
+               row_number() over(order by bnumber desc) as rNum
+           from board2
+     ) mb
+    where rNum between #{displayPost} and #{postNum}
+        order by bnumber desc
+	</select>
 </mapper>
