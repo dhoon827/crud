@@ -126,6 +126,13 @@
 			<!-- <scope>system</scope>
 			<systemPath>${basedir}/src/main/resources/ojdbc6-11.2.0.3.jar</systemPath> -->
 		</dependency>
+		
+		<!-- maria db -->
+<dependency>
+    <groupId>org.mariadb.jdbc</groupId>
+    <artifactId>mariadb-java-client</artifactId>
+    <version>2.3.0</version>
+</dependency>
 
 <!-- org.mybatis/mybatis -->
 <dependency>
