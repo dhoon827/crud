@@ -20,7 +20,7 @@
 <input type="text" name="bwriter"value="${view.bwriter}"  /><br />
 
 <label>내용</label>
-<textarea cols="50" rows="5" name="bcontents" value="${view.bcontents}" ></textarea><br />
+<textarea cols="50" rows="5" name="bcontents">${view.bcontents}</textarea><br />
 
 <button type="submit">완료</button>
 

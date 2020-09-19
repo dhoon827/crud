@@ -66,6 +66,7 @@ public class BoardController {
 	public String postModify(BoardVO vo) throws Exception {
 
 	 service.modify(vo);
+	 
 	   
 	 return "redirect:/board/view?bnumber=" + vo.getBnumber();
 	}
