@@ -17,7 +17,7 @@
 </p>
 <form role="form" method="post" autocomplete="off">
  <p>
-  <label for="userId">아이디</label>
+  <label for="mid">아이디</label>
   <input type="text" id="mid" name="mid" />
  </p>
  <p>
@@ -25,7 +25,7 @@
   <input type="password" id="mpassword" name="mpassword" />
  </p>
  <p><button type="submit">로그인</button></p>
- <p><a href="/member/register">회원가입</a></p>
+ <p><a href="/board/register">회원가입</a></p>
 </form>
 
 </body>

@@ -12,7 +12,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Inject SqlSession sql;
 
-	private static String namespace="com.board.mappers.board";
+	private static String namespace="com.board.mappers.member";
 	
 	// 회원가입
 	@Override
