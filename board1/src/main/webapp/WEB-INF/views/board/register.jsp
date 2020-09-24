@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form role="form" method="post" autocomplete="off">
+<!-- <form role="form" method="post" autocomplete="off">
  <p>
   <label for="mid">아이디</label>
   <input type="text" id="mid" name="mid" />
@@ -26,6 +26,21 @@
   <a href="/">처음으로</a>
  </p>
  
+</form> -->
+<form method="post">
+
+<label>아이디</label>
+<input type="text" name="mid" /><br />
+
+<label>비밀번호</label>
+<input type="text" name="mpassword" /><br />
+
+<label>이름</label>
+<input type="text" name="mname" /><br />
+
+<button type="submit">가입하기</button>
+
+  <a href="/">처음으로</a>
 </form>
 </body>
 </html>

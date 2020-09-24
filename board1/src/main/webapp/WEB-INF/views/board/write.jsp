@@ -16,7 +16,7 @@
 <input type="text" name="btitle" /><br />
 
 <label>작성자</label>
-<input type="text" name="bwriter" /><br />
+<input type="text" name="bwriter" value="${member.mname }" readonly="readonly" /><br />
 
 <label>내용</label>
 <textarea cols="50" rows="5" name="bcontents"></textarea><br />
