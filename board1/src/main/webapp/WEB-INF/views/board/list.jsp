@@ -37,6 +37,6 @@
 		</tbody>
 
 	</table>
-
+<h1>${member.mname}님의 페이지</h1>
 </body>
 </html>
