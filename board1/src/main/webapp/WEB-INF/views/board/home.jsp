@@ -29,8 +29,8 @@
  <p><a href="/board/register">회원가입</a></p>
 </form>
 
-<h1>${member}님의 페이지</h1>
-아 환영한다.
+<h1>${member}님 환영합니다 :)</h1>
+
 
 <a href="board/logout">로그아웃</a>
 <%-- </c:if> --%>
