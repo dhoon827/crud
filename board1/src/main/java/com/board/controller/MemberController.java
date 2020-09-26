@@ -40,31 +40,22 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	  
 	// 로그인
 	  @RequestMapping(value = "/login", method = RequestMethod.POST)
-	  public String login(MemberVO vo, HttpServletRequest req, Model model) throws Exception {
-	   logger.info("post login");
+	  public String login(MemberVO vo, HttpServletRequest req) throws Exception {
 	   
 	   HttpSession session = req.getSession();
 	   MemberVO login = service.login(vo);
 	   if(login == null) {
 	    session.setAttribute("member", null);
-	    System.out.println(login+"2");
 	   } else {
 	    session.setAttribute("member", login);
-	    System.out.println(login+"3");
 	   }
-	   System.out.println("session : " + session.getAttribute("member"));
-	   System.out.println("session2 : " + session.getId());
-	   
-	   model.addAttribute("member2", login);
-	   System.out.println("member2 : "+ model);
 		return "redirect:/";
 	  }
 	  
 	// 로그아웃
 	  @RequestMapping(value = "/logout", method = RequestMethod.GET)
 	  public String logout(HttpSession session) throws Exception {
-	   logger.info("get logout");
-	   
+
 	   session.invalidate();
 	     
 	   return "redirect:/";
