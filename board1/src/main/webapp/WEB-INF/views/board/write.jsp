@@ -10,13 +10,14 @@
 <div id="nav">
  <%@ include file="../include/nav.jsp" %>
 </div>
+<c:if test="${msg == null}">
 <form method="post">
 
 <label>제목</label>
 <input type="text" name="btitle" /><br />
 
 <label>작성자</label>
-<input type="text" name="bwriter" value="${member.mname }" readonly="readonly" /><br />
+<input type="text" name="bwriter" value="${member.mname}" readonly="readonly" /><br />
 
 <label>내용</label>
 <textarea cols="50" rows="5" name="bcontents"></textarea><br />
@@ -24,5 +25,10 @@
 <button type="submit">작성</button>
 
 </form>
+</c:if>
+<c:if test="${msg == false}">
+	<p>로그인을 하셔야 글을 작성할 수 있습니다.</p>
+	<p><a href="/">홈으로</a></p>
+</c:if>
 </body>
 </html>

@@ -11,8 +11,8 @@
 	</insert>
 
 	<!-- 로그인 -->
-	<select id="login" resultType="com.board.domain.MemberVO">
-		select mid, mname from member 
-			where mid = #{mid} and mpassword = #{mpassword}
+	<select id="loginBcrypt" resultType="com.board.domain.MemberVO">
+		select mid, mname, mpassword from member 
+			where mid = #{mid} 
 	</select>
 </mapper>
