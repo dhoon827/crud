@@ -50,9 +50,21 @@ public class BoardServiceImpl implements BoardService {
 
 //게시물 수정
 	@Override
-	public void modify(BoardVO vo) throws Exception {
+	public void modify(BoardVO vo, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
 
 		dao.modify(vo);
+		
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(vo, files, fileNames, mpRequest);
+		Map<String, Object> tempMap = null;
+		int size = list.size();
+		for(int i = 0; i<size; i++) {
+			tempMap = list.get(i);
+			if(tempMap.get("IS_NEW").equals("Y")) {
+				dao.insertFile(tempMap);
+			}else {
+				dao.updateFile(tempMap);
+			}
+		}
 	}
 
 //게시물 삭제
@@ -65,7 +77,15 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, Object>> selectFileList(int bnumber) throws Exception {
 		return dao.selectFileList(bnumber);
 	}
+	
+	// 첨부파일 다운로드
+		@Override
+		public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+			return dao.selectFileInfo(map);
+		}	
 
+		
+		
 //게시물 총 갯수
 	@Override
 	public int count() throws Exception {

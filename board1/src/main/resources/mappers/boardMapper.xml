@@ -13,11 +13,14 @@
 		order by bnumber desc
 	</select>
 	<!-- 게시물 작성 -->
-	<insert id="write" parameterType="com.board.domain.BoardVO">
+	<insert id="write" parameterType="com.board.domain.BoardVO" useGeneratedKeys="true" keyProperty="bnumber">
+		 <selectKey keyProperty="bnumber" resultType="int" order="BEFORE">
+	    	SELECT SEQ_BOARD2.NEXTVAL FROM DUAL
+	    </selectKey>
 		insert into
 		board2(bnumber,
 		bwriter, btitle, bcontents)
-		values(SEQ_BOARD2.nextval, #{bwriter},
+		values(#{bnumber}, #{bwriter},
 		#{btitle},
 		#{bcontents})
 	</insert>
@@ -77,7 +80,24 @@
 	  FROM MP_FILE
 	 WHERE BNUMBER = #{BNUMBER}
 	   AND DEL_GB = 'N'
+	   ORDER BY FILE_NO ASC
 </select>
+
+<!-- 첨부파일 다운 -->
+<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+	SELECT 
+		STORED_FILE_NAME,
+		ORG_FILE_NAME
+	FROM MP_FILE
+	WHERE FILE_NO = #{FILE_NO}
+</select>
+
+<!-- 첨부파일 수정 -->
+ <update id="updateFile" parameterType="hashMap">
+    	UPDATE MP_FILE SET
+    	DEL_GB = 'Y'
+    	WHERE FILE_NO = #{FILE_NO}
+    </update>
 
 	<!-- 게시물 총 갯수 -->
 	<select id="count" resultType="int">

@@ -67,7 +67,21 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<Map<String, Object>> selectFileList(int bnumber) throws Exception {
 		return sql.selectList(namespace +".selectFileList", bnumber);
 	}
-
+	
+	// 첨부파일 다운로드
+	@Override
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+		return sql.selectOne(namespace +".selectFileInfo", map);
+	}
+	
+	@Override
+	public void updateFile(Map<String, Object> map) throws Exception {
+		
+		sql.update(namespace +".updateFile", map);
+	}
+	
+	
+	
 	// 게시물 목록 + 페이징
 
 	@Override

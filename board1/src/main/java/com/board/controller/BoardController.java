@@ -1,9 +1,12 @@
 package com.board.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -68,15 +71,21 @@ public class BoardController {
 		BoardVO vo = service.view(bnumber);
 
 		model.addAttribute("view", vo);
+		
+		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+		model.addAttribute("file", fileList);
 	}
 
 	// 게시물 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String postModify(BoardVO vo) throws Exception {
+	public String postModify(BoardVO vo,  @RequestParam(value="fileNoDel[]") String[] files,
+			 @RequestParam(value="fileNameDel[]") String[] fileNames,
+			 MultipartHttpServletRequest mpRequest) throws Exception {
 
-		service.modify(vo);
+		service.modify(vo, files, fileNames, mpRequest);
 
 		return "redirect:/board/view?bnumber=" + vo.getBnumber();
+		
 	}
 
 	// 게시물 삭제
@@ -86,6 +95,25 @@ public class BoardController {
 		service.delete(bnumber);
 
 		return "redirect:/board/list";
+	}
+	
+	//첨부파일 다운
+	@RequestMapping(value="/fileDown")
+	public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{
+		Map<String, Object> resultMap = service.selectFileInfo(map);
+		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
+		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
+		
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
+		
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition",  "attachment; fileName=\""+URLEncoder.encode(originalFileName, "UTF-8")+"\";");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+		
 	}
 	
 	

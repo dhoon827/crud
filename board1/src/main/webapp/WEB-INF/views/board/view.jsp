@@ -5,7 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시물 조회</title>
+<script>
+function fn_fileDown(fileNo){
+	var formObj = $("form[name='readForm']");
+	$("#FILE_NO").attr("value", fileNo);
+	formObj.attr("action", "/board/fileDown");
+	formObj.submit();
+}
+
+
+</script>
 </head>
 <body>
 	<div id="nav">

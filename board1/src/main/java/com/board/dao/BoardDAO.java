@@ -31,6 +31,12 @@ public interface BoardDAO {
 	// 첨부파일 조회
 	public List<Map<String, Object>> selectFileList(int bnumber) throws Exception;
 
+	// 첨부파일 다운
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
+	
+	// 첨부파일 수정
+		public void updateFile(Map<String, Object> map) throws Exception;
+		
 	// 게시물 목록 + 페이징
 	public List listPage(int displayPost, int postNum) throws Exception;
 
