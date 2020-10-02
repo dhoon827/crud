@@ -51,6 +51,33 @@
 		where bnumber
 		= #{bnumber}
 	</delete>
+	
+	<!-- 파일첨부 -->
+	<insert id="insertFile" parameterType="hashMap">
+		INSERT INTO MP_FILE(
+			FILE_NO,
+			BNUMBER,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_MP_FILE_NO.NEXTVAL,
+			#{BNUMBER},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
+    <!-- 첨부파일 조회 -->
+<select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT FILE_NO,
+		   ORG_FILE_NAME,
+		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+	  FROM MP_FILE
+	 WHERE BNUMBER = #{BNUMBER}
+	   AND DEL_GB = 'N'
+</select>
 
 	<!-- 게시물 총 갯수 -->
 	<select id="count" resultType="int">

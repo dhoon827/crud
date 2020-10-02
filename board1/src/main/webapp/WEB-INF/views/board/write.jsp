@@ -11,7 +11,7 @@
  <%@ include file="../include/nav.jsp" %>
 </div>
 <c:if test="${msg == null}">
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
 <label>제목</label>
 <input type="text" name="btitle" /><br />
@@ -21,6 +21,9 @@
 
 <label>내용</label>
 <textarea cols="50" rows="5" name="bcontents"></textarea><br />
+
+<label>파일첨부</label>
+<input type="file" name="file" /><br />
 
 <button type="submit">작성</button>
 

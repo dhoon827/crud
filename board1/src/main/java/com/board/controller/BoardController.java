@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.domain.BoardVO;
 import com.board.service.BoardService;
@@ -42,8 +44,8 @@ public class BoardController {
 
 	// 게시물 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String posttWirte(BoardVO vo) throws Exception {
-		service.write(vo);
+	public String posttWirte(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
+		service.write(vo, mpRequest);
 
 		return "redirect:/board/list";
 	}
@@ -54,6 +56,9 @@ public class BoardController {
 		BoardVO vo = service.view(bnumber);
 
 		model.addAttribute("view", vo);
+		
+		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+		model.addAttribute("file", fileList);
 	}
 
 	// 게시물 수정
