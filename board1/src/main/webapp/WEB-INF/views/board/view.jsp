@@ -22,6 +22,11 @@ function fn_fileDown(fileNo){
 	<div id="nav">
 		<%@ include file="../include/nav.jsp"%>
 	</div>
+	
+	<form name="readForm" role="form" method="post">
+		<input type="hidden" id="FILE_NO" name="FILE_NO" value=""> 
+	</form>
+				
 	<label>제목</label> ${view.btitle}
 	<br />
 

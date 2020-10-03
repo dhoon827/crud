@@ -45,6 +45,7 @@ var fileNoArry = new Array();
 		fileNameArry.push(name);
 		$("#fileNoDel").attr("value", fileNoArry);
 		$("#fileNameDel").attr("value", fileNameArry);
+		$("#remove").remove();
 	}
 </script>
 <body>
@@ -67,7 +68,7 @@ var fileNoArry = new Array();
 <label>첨부파일</label>
 <div id="fileIndex">
 	<c:forEach var="file" items="${file}" varStatus="var">
-		<div>
+		<div id="remove">
 			<input type="hidden" id="FILE_NO" name="FILE_NO_${var.index}" value="${file.FILE_NO }">
 			<input type="hidden" id="FILE_NAME" name="FILE_NAME" value="FILE_NO_${var.index}">
 			<a href="#" id="fileName" onclick="return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)

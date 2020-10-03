@@ -17,6 +17,8 @@ $(document).ready(function(){
 	});
 	fn_addFile();
 })
+
+/* 폼태그 확인 */
 function fn_valiChk(){
 	var regForm = $("form[name='writeForm'] .chk").length;
 	for(var i = 0; i<regForm; i++){
@@ -26,10 +28,13 @@ function fn_valiChk(){
 		}
 	}
 }
+
+
 function fn_addFile(){
 	var fileIndex = 1;
 	$(".fileAdd_btn").on("click", function(){
 		$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+
 	});
 	$(document).on("click","#fileDelBtn", function(){
 		$(this).parent().remove();
@@ -56,6 +61,7 @@ function fn_addFile(){
 
 
 <div id="fileIndex">
+
 </div>
 <!-- <label>파일첨부</label>
 <input type="file" name="file" /><br />
