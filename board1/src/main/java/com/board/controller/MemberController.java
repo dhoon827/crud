@@ -62,6 +62,7 @@ public class MemberController {
 		
 		if(login != null && passMatch) {
 			session.setAttribute("member", login);
+			
 		}else {
 			  session.setAttribute("member", null);
 			  rttr.addFlashAttribute("msg", false);
