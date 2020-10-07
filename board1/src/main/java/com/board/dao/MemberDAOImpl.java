@@ -26,4 +26,14 @@ public class MemberDAOImpl implements MemberDAO {
 		/* return sql.selectOne(namespace+".login", vo); */
 		return sql.selectOne(namespace+".loginBcrypt", vo);
 	}
+	
+	/*
+	 * //아이디 중복확인(ajax) public String idOverlap(String mid) throws Exception{
+	 *  return sql.selectOne(namespace+"idOverlap", mid); }
+	 */
+	// 아이디 중복 체크
+	@Override
+	public MemberVO idCheck(String mid) throws Exception {
+		return sql.selectOne(namespace+".idCheck", mid);
+	}
 }

@@ -6,13 +6,26 @@
 
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="com.board.domain.MemberVO">
-		insert into member(mid, mpassword, mname)
+		insert into member(mid,
+		mpassword, mname)
 		values(#{mid}, #{mpassword}, #{mname})
 	</insert>
 
 	<!-- 로그인 -->
 	<select id="loginBcrypt" resultType="com.board.domain.MemberVO">
-		select mid, mname, mpassword from member 
-			where mid = #{mid} 
+		select mid, mname, mpassword
+		from member
+		where mid = #{mid}
 	</select>
+
+	<!-- 아이디 중복확인(ajax) -->
+	<!-- <select id="idOverlap" resultType="com.board.domain.MemberVO"> SELECT 
+		* FROM MEMBER WHERE MID=#{mid} </select> -->
+
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="com.board.domain.MemberVO">
+	 select mid from member
+     where mid = #{mid}
+	</select>
+
 </mapper>
