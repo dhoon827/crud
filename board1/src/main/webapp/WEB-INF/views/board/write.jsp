@@ -7,27 +7,27 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시물 작성</title>
 <script type="text/javascript">
-$(document).ready(function(){
+/* $(document).ready(function(){
 	var formObj = $("form[name='writeForm']");
 	$(".write_btn").on("click", function(){
-		if(fn_valiChk()){
-			return false;
-		}
+		if()
 		formObj.submit();
 	});
 	fn_addFile();
-})
+}) */
 
-/* 폼태그 확인 */
-function fn_valiChk(){
-	var regForm = $("form[name='writeForm'] .chk").length;
-	for(var i = 0; i<regForm; i++){
-		if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-			alert($(".chk").eq(i).attr("title"));
-			return true;
-		}
+ function write_btn(){
+
+  	if($("#btitle").val() == null || $("#btitle").val() == ""){
+		alert("비어있다.");
+		return false;
+	}else {
+	 writeForm.submit(); 
 	}
-}
+	
+} 
+
+
 
 
 function fn_addFile(){
@@ -41,6 +41,8 @@ function fn_addFile(){
 		
 	});
 }
+
+
 </script>
 </head>
 <body>
@@ -48,16 +50,16 @@ function fn_addFile(){
  <%@ include file="../include/nav.jsp" %>
 </div>
 <c:if test="${msg == null}">
-<form method="post" enctype="multipart/form-data">
+<form name="writeForm" method="post" enctype="multipart/form-data">
 
 <label>제목</label>
-<input type="text" name="btitle" /><br />
+<input type="text" id="btitle" name="btitle" /><br />
 
 <label>작성자</label>
-<input type="text" name="bwriter" value="${member.mname}" readonly="readonly" /><br />
+<input type="text" id="bwriter" name="bwriter" value="${member.mname}" readonly="readonly" /><br />
 
 <label>내용</label>
-<textarea cols="50" rows="5" name="bcontents"></textarea><br />
+<textarea cols="50" rows="5" id="bcontent" name="bcontents"></textarea><br />
 
 
 <div id="fileIndex">
@@ -68,7 +70,7 @@ function fn_addFile(){
  -->
 
 
-<button class="write_btn" type="submit">작성</button>
+<button type="button" onClick="write_btn(); return false">작성</button>
 <button class="fileAdd_btn" type="button">파일추가</button>	
 
 </form>

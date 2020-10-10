@@ -35,12 +35,14 @@
 <script> 
 $(".idCheck").click(function(){
  
- var query = {mid : $("#mid").val()};
- 
+//var query = {mid : $("#mid").val()}
+ var query = $("#mid").val();
+
  $.ajax({
   url : "/board/idCheck",
   type : "post",
-  data : query,
+  data : {"mid" : query},
+  dataType : "json",  
   success : function(data) {
   
    if(data == 1) {

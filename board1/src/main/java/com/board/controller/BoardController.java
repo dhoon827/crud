@@ -49,7 +49,7 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String posttWirte(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
 		service.write(vo, mpRequest);
-
+		
 		return "redirect:/board/list";
 	}
 
