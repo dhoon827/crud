@@ -48,6 +48,7 @@ function fn_addFile(){
 <body>
 <div id="nav">
  <%@ include file="../include/nav.jsp" %>
+ 
 </div>
 <c:if test="${msg == null}">
 <form name="writeForm" method="post" enctype="multipart/form-data">
