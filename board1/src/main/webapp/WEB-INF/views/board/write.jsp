@@ -16,7 +16,7 @@
 	fn_addFile();
 }) */
 
- function write_btn(){
+/*  function write_btn(){
 
   	if($("#btitle").val() == null || $("#btitle").val() == ""){
 		alert("비어있다.");
@@ -25,7 +25,22 @@
 	 writeForm.submit(); 
 	}
 	
-} 
+}  */
+
+function write_btn() {
+	// submit을 제외한 모든 input태그의 갯수를 가져옴
+	    var length = document.forms[0].length - 1;
+	 
+	    for ( var i = 0; i < length; i++) { 
+	 		if (document.forms[0][i].value == null
+	                || document.forms[0][i].value == "") {
+	            alert(document.forms[0][i].name + "을(를) 입력하세요.");
+	          return false;
+	        }else{
+	        	writeForm.submit();
+	        	}
+	    }
+	}
 
 
 

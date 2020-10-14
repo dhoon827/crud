@@ -11,19 +11,23 @@
 <div id="nav">
  <%@ include file="../include/nav.jsp" %>
 </div>
+<c:if test="${member != null}">
+<h1>${member.mname}님의 페이지</h1>
+</c:if>	
+<c:if test="${member == null}">
+<h1>비회원입니다.</h1>
+</c:if>	
 
-	<table>
-		<thead>
+	<table border="1">
+		
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
-				<th>작성일</th>
 				<th>작성자</th>
+				<th>내용</th>
+				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
-		</thead>
-
-		<tbody>
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td>${list.bnumber}</td>
@@ -34,9 +38,8 @@
 					<td>${list.bhits}</td>
 				</tr>
 			</c:forEach>
-		</tbody>
 
 	</table>
-<h1>${member.mname}님의 페이지</h1>
+	
 </body>
 </html>

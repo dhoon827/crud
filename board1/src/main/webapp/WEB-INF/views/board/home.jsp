@@ -9,9 +9,10 @@
 	<h1>Hello world!</h1>
 
 	<P>The time on the server is ${serverTime}.</P>
-	<p>
-		<a href="/board/list">게시물 목록</a> <a href="/board/write">게시물 작성</a>
-	</p>
+		<a href="/board/list">게시물 목록</a> 
+	<c:if test="${member != null}">
+		<a href="/board/write">게시물 작성</a>
+	</c:if>
 	<c:if test="${member == null }">
 		<form role="form" method="post" autocomplete="off" action="/board/login">
 		<p>
@@ -36,7 +37,8 @@
 		<h1>${member.mname}님환영합니다:)</h1>
 	</c:if>
 
-
+	<c:if test="${member != null }">
 	<a href="board/logout">로그아웃</a>
+	</c:if>
 </body>
 </html>
