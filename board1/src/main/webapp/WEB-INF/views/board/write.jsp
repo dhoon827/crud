@@ -29,17 +29,23 @@
 
 function write_btn() {
 	// submit을 제외한 모든 input태그의 갯수를 가져옴
-	    var length = document.forms[0].length - 1;
-	 
+	var wrName = document.forms[0][4];
+	/* console.log(wrName); */
+	
+	    var length = document.forms[0].length;
 	    for ( var i = 0; i < length; i++) { 
+	    /* 	console.log(document.forms[0].elements[i]); */
 	 		if (document.forms[0][i].value == null
 	                || document.forms[0][i].value == "") {
+	        	console.log(length+"실패");
 	            alert(document.forms[0][i].name + "을(를) 입력하세요.");
 	          return false;
 	        }else{
-	        	writeForm.submit();
+	        	console.log("성공");
+	        	
 	        	}
 	    }
+	        	writeForm.submit();
 	}
 
 
@@ -86,8 +92,8 @@ function fn_addFile(){
  -->
 
 
-<button type="button" onClick="write_btn(); return false">작성</button>
-<button class="fileAdd_btn" type="button">파일추가</button>	
+<button type="button" onClick="write_btn(); return false" name ="btn1">작성</button>
+<button class="fileAdd_btn" type="button" name ="btn2">파일추가</button>	
 
 </form>
 </c:if>
