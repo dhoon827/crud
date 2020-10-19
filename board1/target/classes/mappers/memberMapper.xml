@@ -7,8 +7,8 @@
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="com.board.domain.MemberVO">
 		insert into member(mid,
-		mpassword, mname)
-		values(#{mid}, #{mpassword}, #{mname})
+		mpassword, mname,mpower)
+		values(#{mid}, #{mpassword}, #{mname},'D')
 	</insert>
 
 	<!-- 로그인 -->

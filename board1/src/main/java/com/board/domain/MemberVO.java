@@ -4,6 +4,7 @@ public class MemberVO {
 	private String mid;
 	private String mpassword;
 	private String mname;
+	private String mpower;
 	
 	public MemberVO() {
 		
@@ -33,16 +34,25 @@ public class MemberVO {
 		this.mname = mname;
 	}
 
-	public MemberVO(String mid, String mpassword, String mname) {
+	public String getMpower() {
+		return mpower;
+	}
+
+	public void setMpower(String mpower) {
+		this.mpower = mpower;
+	}
+
+	public MemberVO(String mid, String mpassword, String mname, String mpower) {
 		super();
 		this.mid = mid;
 		this.mpassword = mpassword;
 		this.mname = mname;
+		this.mpower = mpower;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberVO [mid=" + mid + ", mpassword=" + mpassword + ", mname=" + mname + "]";
+		return "MemberVO [mid=" + mid + ", mpassword=" + mpassword + ", mname=" + mname + ", mpower=" + mpower + "]";
 	}
 	
 	
