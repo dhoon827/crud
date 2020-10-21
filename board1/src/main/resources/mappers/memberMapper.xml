@@ -13,7 +13,7 @@
 
 	<!-- 로그인 -->
 	<select id="loginBcrypt" resultType="com.board.domain.MemberVO">
-		select mid, mname, mpassword
+		select mid, mname, mpassword, mpower
 		from member
 		where mid = #{mid}
 	</select>
@@ -27,5 +27,29 @@
 	 select mid from member
      where mid = #{mid}
 	</select>
+	
+	<!-- 등업 신청 작성 -->
+	<insert id="authority" parameterType="com.board.domain.AuthorityVO" >
+		insert into authority(anumber, aid, atitle, acontents, astate, anow, apropose, aupdate)
+		values(SEQ_AUTHORITY.NEXTVAL, #{aid}, #{atitle}, #{acontents},'ing',#{anow},'1','X')
+	</insert>
 
+	<!-- 등급 허락 페이지 이동 -->
+		<!-- 게시물 목록 -->
+	<select id="authoritylist" resultType="com.board.domain.AuthorityVO">
+		select * from authority order by anumber desc
+	</select>
+	
+	<!-- 등급 승인 -->
+	<update id="accept" parameterType="com.board.domain.AuthorityVO">
+		update authority set astate = '완료', anow = 'C', aupdate = '승인' 
+			where anumber = #{anumber}
+	</update>
+	
+	<!-- 등급하락 페이지 정보 조회 -->
+		<select id="view" parameterType="int"
+		resultType="com.board.domain.AuthorityVO">
+		select * from authority
+			where anumber = #{anumber}
+	</select>
 </mapper>

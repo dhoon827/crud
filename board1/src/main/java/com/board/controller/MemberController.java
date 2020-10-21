@@ -1,5 +1,8 @@
 package com.board.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.board.domain.AuthorityVO;
+import com.board.domain.BoardVO;
 import com.board.domain.MemberVO;
 import com.board.service.MemberService;
 
@@ -111,5 +116,43 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+	//등급 업 신청 페이지 이동
+	@RequestMapping(value = "/authority", method = RequestMethod.GET)
+	public void getAuthority() throws Exception {
+	}
+	
+	//등급 업 신청
+	@RequestMapping(value = "/authority", method = RequestMethod.POST)
+	public String postAuthority(AuthorityVO vo) throws Exception {
+		
+		service.authority(vo);
 
+		return "redirect:/";
+	}
+	//등급 허락 페이지 리스트 이동
+	@RequestMapping(value = "/permissionlist", method = RequestMethod.GET)
+	public void getList(Model model) throws Exception {
+
+		List list = null;
+		list = service.list();
+		model.addAttribute("list", list);
+	}
+	
+	// 등급 허락 페이지 
+	@RequestMapping(value = "/permission", method = RequestMethod.GET)
+	public void getModify(@RequestParam("anumber") int anumber, Model model) throws Exception {
+
+		AuthorityVO vo = service.view(anumber);
+
+		model.addAttribute("list", vo);
+	}
+	
+	//등급 승인
+	@RequestMapping(value="/accept", method = RequestMethod.GET)
+	public String accept(@RequestParam("anumber") int anumber) throws Exception {
+		service.accept(anumber);
+		return "redirect:/board/permissionlist";
+	}
+	
 }
