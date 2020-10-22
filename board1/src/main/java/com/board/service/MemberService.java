@@ -30,4 +30,7 @@ public interface MemberService {
 	// 등급 허락 페이지 
 	public AuthorityVO view(int anumber) throws Exception;
 
+	//등급 반려
+	public void reject(int anumber) throws Exception;
+
 }

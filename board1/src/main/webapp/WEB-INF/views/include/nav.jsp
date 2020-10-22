@@ -12,7 +12,7 @@
 	 <li>
 	 	<a href="/">홈으로</a>
 	 </li>
-	 <c:if test="${member != null }">
+	 <c:if test="${member.mpower == 'C'||member.mpower == 'A'}">
 	 <li>
 	 	 <a href="/board/write">글 작성</a> 
 	 </li> 

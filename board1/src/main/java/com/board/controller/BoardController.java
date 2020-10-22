@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.domain.BoardVO;
+import com.board.domain.MemberVO;
 import com.board.service.BoardService;
 
 @Controller
@@ -52,7 +53,18 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	//비회원 게시물 작성 페이지 이동
+	@RequestMapping(value = "/openwrite", method = RequestMethod.GET)
+	public void getRegister() throws Exception {
+	}
+	
+	//비회원 게시물 작성
+	@RequestMapping(value = "/openwrite", method = RequestMethod.POST)
+	public String postRegister(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
+		service.write(vo, mpRequest);
 
+		return "redirect:/board/list";
+	}
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {

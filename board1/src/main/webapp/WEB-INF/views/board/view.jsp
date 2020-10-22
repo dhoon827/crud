@@ -44,9 +44,11 @@ function fn_fileDown(fileNo){
 		</c:forEach>
 	</div>
 	<div>
-	<c:if test="${member.mid == view.bwriter || member.mid == 'admin'}">
-		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>,<a
-			href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
+	<c:if test="${member.mid == view.bwriter}">
+		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>,
+	</c:if>
+	<c:if test="${member.mid == view.bwriter ||member.mpower == 'A'}">
+		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 	</c:if>
 	</div>
 </body>

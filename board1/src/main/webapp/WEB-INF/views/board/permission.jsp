@@ -14,6 +14,13 @@
 </head>
 <body>
 <h1>permission.jsp</h1>
+<div id="nav">
+ <%@ include file="../include/nav.jsp" %>
+</div>
+${member.mid}
+<br>
+${sessionScope.member}
+
 <table border="1">
 		
 			<tr>
@@ -38,6 +45,7 @@
 				</tr>
 
 	</table>
-				<button onclick="location.href='/board/accept?anumber=${list.anumber}'">승인</button><button onclick="reject()">반려</button>
+				<button onclick="location.href='/board/accept?anumber=${list.anumber}'">승인</button>
+				<button onclick="location.href='/board/reject?anumber=${list.anumber}'">반려</button>
 </body>
 </html>

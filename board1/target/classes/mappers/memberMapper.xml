@@ -52,4 +52,9 @@
 		select * from authority
 			where anumber = #{anumber}
 	</select>
+	<!-- 등급 승인 -->
+	<update id="reject" parameterType="com.board.domain.AuthorityVO">
+		update authority set astate = '완료', anow = 'D', aupdate = '반려' 
+			where anumber = #{anumber}
+	</update>
 </mapper>

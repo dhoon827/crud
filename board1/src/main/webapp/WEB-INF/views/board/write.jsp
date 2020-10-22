@@ -32,7 +32,7 @@ function write_btn() {
 	var wrName = document.forms[0][4];
 	/* console.log(wrName); */
 	
-	    var length = document.forms[0].length;
+	    var length = document.forms[0].length-2;
 	    for ( var i = 0; i < length; i++) { 
 	    /* 	console.log(document.forms[0].elements[i]); */
 	 		if (document.forms[0][i].value == null

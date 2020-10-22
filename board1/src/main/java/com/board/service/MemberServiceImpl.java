@@ -69,4 +69,9 @@ public class MemberServiceImpl implements MemberService {
 	public AuthorityVO view(int anumber) throws Exception{
 		return dao.view(anumber);
 	}
+	//등급 반려
+		@Override
+		public void reject(int anumber) throws Exception{
+			dao.reject(anumber);
+		}
 }

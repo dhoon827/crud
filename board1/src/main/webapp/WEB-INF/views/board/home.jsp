@@ -10,12 +10,17 @@
 
 	<P>The time on the server is ${serverTime}.</P>
 		<a href="/board/list">게시물 목록</a> 
-	<c:if test="${member != null}">
+	<c:if test="${member.mpower == 'C'||member.mpower == 'A'}">
 		<a href="/board/write">게시물 작성</a>
+	</c:if>
+	<c:if test="${member.mpower == 'D'}">
 		<a href="/board/authority">등급 업 신청</a>
 	</c:if>
 	<c:if test="${member.mpower == 'A'}">
 		<a href="/board/permissionlist">등업 신청 목록</a>
+	</c:if>
+	<c:if test="${member == null}">
+		<a href="/board/openwrite">게시물 작성</a>
 	</c:if>
 	<c:if test="${member == null }">
 		<form role="form" method="post" autocomplete="off" action="/board/login">

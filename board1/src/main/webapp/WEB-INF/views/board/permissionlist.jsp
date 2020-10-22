@@ -9,6 +9,9 @@
 </head>
 <body>
 <h1>permissionlist.jsp</h1>
+<div id="nav">
+ <%@ include file="../include/nav.jsp" %>
+</div>
 <table border="1">
 		
 			<tr>

@@ -64,4 +64,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public AuthorityVO view(int anumber) throws Exception {
 		return sql.selectOne(namespace + ".view", anumber);
 	}
+	
+	//등급 반려
+	@Override
+	public void reject(int anumber) throws Exception {
+		sql.update(namespace + ".reject", anumber);
+	}
 }
