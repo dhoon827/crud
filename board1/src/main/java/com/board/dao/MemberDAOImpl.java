@@ -65,4 +65,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(namespace + ".view", anumber);
 	}
 	
+	//아이디 등급변경
+//	public void memUpdate(MemberVO mVO) throws Exception {
+//		sql.update(namespace + ".memupdate", mVO);
+//	}
+	public void memUpdate(AuthorityVO vo) throws Exception {
+		sql.update(namespace + ".memupdate", vo);
+	}
+	
 }

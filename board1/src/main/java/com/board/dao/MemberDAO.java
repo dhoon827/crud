@@ -29,4 +29,8 @@ public interface MemberDAO {
 		//등급 허락 페이지 정보조회
 		public AuthorityVO view(int anumber) throws Exception;
 		
+		//아이디 등급변경
+		//public void memUpdate(MemberVO mVO) throws Exception;
+		public void memUpdate(AuthorityVO vo) throws Exception;
+		
 }

@@ -42,7 +42,7 @@
 	
 	<!-- 등급 승인 -->
 	<update id="accept" parameterType="com.board.domain.AuthorityVO">
-		update authority set astate = #{astate}, anow = #{anow}, aupdate = #{aupdate} 
+		update authority set astate = #{astate}, aupdate = #{aupdate} 
 			where anumber = #{anumber}
 	</update>
 	
@@ -52,4 +52,11 @@
 		select * from authority
 			where anumber = #{anumber}
 	</select>
+	
+	<!-- 아이디 등급 변경 -->
+	<update id="memupdate" parameterType="com.board.domain.AuthorityVO">
+		update member set mpower = 'C' 
+			where mid = #{aid}
+	</update>
+		
 </mapper>

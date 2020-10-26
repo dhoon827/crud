@@ -30,5 +30,9 @@ public interface MemberService {
 	// 등급 허락 페이지 
 	public AuthorityVO view(int anumber) throws Exception;
 
+	//아이디 등급변경
+	//public void memUpdate(MemberVO mVO) throws Exception;
+	public void memUpdate(AuthorityVO vo) throws Exception;
+
 
 }

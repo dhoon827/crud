@@ -69,4 +69,15 @@ public class MemberServiceImpl implements MemberService {
 	public AuthorityVO view(int anumber) throws Exception{
 		return dao.view(anumber);
 	}
+	
+	//아이디 등급변경
+//	@Override
+//	public void memUpdate(MemberVO mVO) throws Exception{
+//		System.out.println("나오나? :"+mVO);
+//		dao.memUpdate(mVO);
+//	}
+	@Override
+	public void memUpdate(AuthorityVO vo) throws Exception{
+		dao.memUpdate(vo);
+	}
 }

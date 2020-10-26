@@ -153,13 +153,11 @@ public class MemberController {
 	public String accept(AuthorityVO vo) throws Exception {
 		
 		vo.setAstate("완료");
-
-		
 		 service.accept(vo);
-		/*
-		 * if(vo.getAupdate == "reject") { service.memUpdate(vo) }
-		 */
-		 
+		 if(vo.getAupdate().equals("accept")) {
+			 MemberVO mVO = new MemberVO();
+			 service.memUpdate(vo); 
+			 }
 		return "redirect:/board/permissionlist";
 	}
 	
