@@ -149,17 +149,17 @@ public class MemberController {
 	}
 	
 	//등급 승인
-	@RequestMapping(value="/accept", method = RequestMethod.GET)
-	public String accept(@RequestParam("anumber") int anumber, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		service.accept(anumber);
-		System.out.println("넘어오나>? "+session);
-		return "redirect:/board/permissionlist";
-	}
-	//등급 반려
-	@RequestMapping(value="/reject", method = RequestMethod.GET)
-	public String reject(@RequestParam("anumber") int anumber) throws Exception {
-		service.reject(anumber);
+	@RequestMapping(value="/accept", method = RequestMethod.POST)
+	public String accept(AuthorityVO vo) throws Exception {
+		
+		vo.setAstate("완료");
+
+		
+		 service.accept(vo);
+		/*
+		 * if(vo.getAupdate == "reject") { service.memUpdate(vo) }
+		 */
+		 
 		return "redirect:/board/permissionlist";
 	}
 	

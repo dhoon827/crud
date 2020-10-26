@@ -56,8 +56,8 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	//등급 승인
 	@Override
-	public void accept(int anumber) throws Exception {
-		sql.update(namespace + ".accept", anumber);
+	public void accept(AuthorityVO vo) throws Exception {
+		sql.update(namespace + ".accept", vo);
 	}
 	
 	//등급하락 페이지 정보 조회
@@ -65,9 +65,4 @@ public class MemberDAOImpl implements MemberDAO {
 		return sql.selectOne(namespace + ".view", anumber);
 	}
 	
-	//등급 반려
-	@Override
-	public void reject(int anumber) throws Exception {
-		sql.update(namespace + ".reject", anumber);
-	}
 }

@@ -24,11 +24,9 @@ public interface MemberDAO {
 		public List<AuthorityVO> list() throws Exception;
 		
 		//등급 승인
-		public void accept(int anumber) throws Exception;
+		public void accept(AuthorityVO vo) throws Exception;
 		
 		//등급 허락 페이지 정보조회
 		public AuthorityVO view(int anumber) throws Exception;
 		
-		//등급 반려
-		public void reject(int anumber) throws Exception;
 }

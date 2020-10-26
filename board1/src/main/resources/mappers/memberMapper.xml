@@ -42,7 +42,7 @@
 	
 	<!-- 등급 승인 -->
 	<update id="accept" parameterType="com.board.domain.AuthorityVO">
-		update authority set astate = '완료', anow = 'C', aupdate = '승인' 
+		update authority set astate = #{astate}, anow = #{anow}, aupdate = #{aupdate} 
 			where anumber = #{anumber}
 	</update>
 	
@@ -52,9 +52,4 @@
 		select * from authority
 			where anumber = #{anumber}
 	</select>
-	<!-- 등급 승인 -->
-	<update id="reject" parameterType="com.board.domain.AuthorityVO">
-		update authority set astate = '완료', anow = 'D', aupdate = '반려' 
-			where anumber = #{anumber}
-	</update>
 </mapper>

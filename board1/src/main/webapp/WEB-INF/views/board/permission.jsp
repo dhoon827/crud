@@ -6,9 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+	function accept(){
+		var test1 = $('#act').val();
+		$('#aupdate').val(test1);
+		powerForm.submit();
+	}
+	
 	function reject(){
-		location.href="/board/reject"
+		var test2 = $('#rjt').val();
+		$('#aupdate').val(test2);
+		powerForm.submit();
 	}
 </script>
 </head>
@@ -19,8 +28,10 @@
 </div>
 ${member.mid}
 <br>
-${sessionScope.member}
-
+<form action="/board/accept" name="powerForm" method="post" autocomplete="off">
+<input type="hidden" id="anumber" name="anumber" value="${list.anumber}">
+<input type="hidden" id="aid" name="aid" value="${list.aid}">
+<input type="hidden" id="aupdate" name="aupdate" value="">
 <table border="1">
 		
 			<tr>
@@ -45,7 +56,8 @@ ${sessionScope.member}
 				</tr>
 
 	</table>
-				<button onclick="location.href='/board/accept?anumber=${list.anumber}'">승인</button>
-				<button onclick="location.href='/board/reject?anumber=${list.anumber}'">반려</button>
+</form>
+				<button onclick="accept()" id="act" value="accept">승인</button>
+				<button onclick="reject()" id="rjt" value="reject">반려</button>
 </body>
 </html>

@@ -60,8 +60,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	//등급 승인
 	@Override
-	public void accept(int anumber) throws Exception{
-		dao.accept(anumber);
+	public void accept(AuthorityVO vo) throws Exception{
+		dao.accept(vo);
 	}
 	
 	// 등급 허락 페이지 
@@ -69,9 +69,4 @@ public class MemberServiceImpl implements MemberService {
 	public AuthorityVO view(int anumber) throws Exception{
 		return dao.view(anumber);
 	}
-	//등급 반려
-		@Override
-		public void reject(int anumber) throws Exception{
-			dao.reject(anumber);
-		}
 }
