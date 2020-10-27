@@ -34,5 +34,8 @@ public interface MemberService {
 	//public void memUpdate(MemberVO mVO) throws Exception;
 	public void memUpdate(AuthorityVO vo) throws Exception;
 
+	//등급 상승 신청 중복조회
+	public AuthorityVO overLap(String aid) throws Exception;
+
 
 }

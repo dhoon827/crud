@@ -59,4 +59,9 @@
 			where mid = #{aid}
 	</update>
 		
+	<!-- 등급 상승 신청 중복조회 -->
+	<select id="overLap" resultType="com.board.domain.AuthorityVO">
+	 	select apropose from authority
+    	 where aid = #{aid}
+	</select>
 </mapper>

@@ -80,4 +80,10 @@ public class MemberServiceImpl implements MemberService {
 	public void memUpdate(AuthorityVO vo) throws Exception{
 		dao.memUpdate(vo);
 	}
+	
+	//등급 상승 신청 중복조회
+	@Override
+	public AuthorityVO overLap(String aid) throws Exception {
+		return dao.overLap(aid);
+	}
 }

@@ -73,4 +73,9 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.update(namespace + ".memupdate", vo);
 	}
 	
+	//등급 상승 신청 중복조회
+	@Override
+	public AuthorityVO overLap(String aid) throws Exception {
+		return sql.selectOne(namespace+".overLap", aid);
+	}
 }

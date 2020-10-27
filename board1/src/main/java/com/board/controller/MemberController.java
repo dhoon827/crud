@@ -137,11 +137,18 @@ public class MemberController {
 		list = service.list();
 		model.addAttribute("list", list);
 	}
-	/*
-	 * //등급 상승 신청 중복조회
-	 * 
-	 * @RequestMapping()
-	 */
+	//등급 상승 신청 중복조회
+	@RequestMapping(value = "/overlap", method = RequestMethod.GET)
+	public int overLap(@RequestParam("aid") String aid, Model model) throws Exception {
+
+		AuthorityVO vo = service.overLap(aid);
+		int result = 0;
+
+		if (vo != null) {
+			result = 1;
+		}
+		return result;
+	}
 	
 	// 등급 허락 페이지 
 	@RequestMapping(value = "/permission", method = RequestMethod.GET)

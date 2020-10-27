@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 <script>
 	
-	function write_btn(){
-		$(".writeBtn").click(function(){
+	
+		function writeBtn(){
+			console.log("aid : "+$("aid").val());
 			var query = $("#aid").val();
+			console.log("query값 : "+query);
 			$.ajax({
 				url : "/board/overlap",
 				type : "post",
@@ -23,8 +25,8 @@
 					}
 				}
 			});
-		});
-	}
+		}
+	
 </script>
 </head>
 <body>
@@ -48,7 +50,7 @@
  -->
 
 
-<button type="button" class="writeBtn" onClick="write_btn(); return false" name ="btn1">신청하기</button>
+<button type="button" onclick="writeBtn()"; return false name ="btn1">신청하기</button>
 
 </form>
 
