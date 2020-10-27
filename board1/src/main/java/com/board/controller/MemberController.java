@@ -137,6 +137,11 @@ public class MemberController {
 		list = service.list();
 		model.addAttribute("list", list);
 	}
+	/*
+	 * //등급 상승 신청 중복조회
+	 * 
+	 * @RequestMapping()
+	 */
 	
 	// 등급 허락 페이지 
 	@RequestMapping(value = "/permission", method = RequestMethod.GET)
