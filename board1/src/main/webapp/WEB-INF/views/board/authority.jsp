@@ -6,8 +6,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+	
 	function write_btn(){
-		writeForm.submit();
+		$(".writeBtn").click(function(){
+			var query = $("#aid").val();
+			$.ajax({
+				url : "/board/overlap",
+				type : "post",
+				data : {"aid" : query},
+				dataType : "json",
+				success : function(data){
+					if(data == 1){
+						alert("이미 신청하셨습니다");
+					}else{
+						writeForm.submit();
+					}
+				}
+			});
+		});
 	}
 </script>
 </head>
@@ -32,7 +48,7 @@
  -->
 
 
-<button type="button" onClick="write_btn(); return false" name ="btn1">신청하기</button>
+<button type="button" class="writeBtn" onClick="write_btn(); return false" name ="btn1">신청하기</button>
 
 </form>
 

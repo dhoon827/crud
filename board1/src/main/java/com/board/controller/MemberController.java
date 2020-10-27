@@ -127,7 +127,6 @@ public class MemberController {
 	public String postAuthority(AuthorityVO vo) throws Exception {
 		
 		service.authority(vo);
-
 		return "redirect:/";
 	}
 	//등급 허락 페이지 리스트 이동
