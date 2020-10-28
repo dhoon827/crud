@@ -20,7 +20,7 @@
 		<a href="/board/permissionlist">등업 신청 목록</a>
 	</c:if>
 	<c:if test="${member == null}">
-		<a href="/board/openwrite">게시물 작성</a>
+		<a href="/board/openwrite">게시물 작성(익명)</a>
 	</c:if>
 	<c:if test="${member == null }">
 		<form role="form" method="post" autocomplete="off" action="/board/login">
