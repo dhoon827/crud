@@ -78,7 +78,7 @@ function fn_addFile(){
 <input type="text" id="btitle" name="btitle" /><br />
 
 <label>작성자</label>
-<input type="text" id="bwriter" name="bwriter" value="${member.mname}" readonly="readonly" /><br />
+<input type="text" id="bwriter" name="bwriter" value="${member.mid}" readonly="readonly" /><br />
 
 <label>내용</label>
 <textarea cols="50" rows="5" id="bcontent" name="bcontents"></textarea><br />

@@ -9,7 +9,6 @@
 	
 	
 		function writeBtn(){
-			console.log("aid : "+$("aid").val());
 			var query = $("#aid").val();
 			console.log("query값 : "+query);
 			$.ajax({
@@ -48,7 +47,7 @@
 <!-- <label>파일첨부</label>
 <input type="file" name="file" /><br />
  -->
-
+	
 
 <button type="button" onclick="writeBtn()"; return false name ="btn1">신청하기</button>
 

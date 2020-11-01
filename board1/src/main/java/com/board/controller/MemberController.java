@@ -166,7 +166,6 @@ public class MemberController {
 		vo.setAstate("완료");
 		 service.accept(vo);
 		 if(vo.getAupdate().equals("accept")) {
-			 MemberVO mVO = new MemberVO();
 			 service.memUpdate(vo); 
 			 }
 		return "redirect:/board/permissionlist";
