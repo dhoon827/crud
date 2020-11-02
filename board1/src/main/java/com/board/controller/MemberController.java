@@ -119,13 +119,19 @@ public class MemberController {
 	
 	//등급 업 신청 페이지 이동
 	@RequestMapping(value = "/authority", method = RequestMethod.GET)
-	public void getAuthority() throws Exception {
+	public void getAuthority(HttpServletRequest req) throws Exception {
+		List list = null;
+		HttpSession session = req.getSession();
+		list = service.list();
+		System.out.println("리스트에 뭐가 있을까? "+list);
+		System.out.println("여긴? "+session.getAttribute("member"));
+		System.out.println("여기는???? "+session.getAttribute("member.mid"));
 	}
 	
 	//등급 업 신청
 	@RequestMapping(value = "/authority", method = RequestMethod.POST)
 	public String postAuthority(AuthorityVO vo) throws Exception {
-		
+		System.out.println("확인 : "+vo);
 		service.authority(vo);
 		return "redirect:/";
 	}

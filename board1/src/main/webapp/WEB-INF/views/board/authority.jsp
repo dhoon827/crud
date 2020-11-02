@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script>
 	
-	
+	/* 
 		function writeBtn(){
 			var query = $("#aid").val();
 			console.log("query값 : "+query);
@@ -24,6 +24,10 @@
 					}
 				}
 			});
+		} */
+		
+		function writeBtn(){
+			writeForm.submit();
 		}
 	
 </script>
