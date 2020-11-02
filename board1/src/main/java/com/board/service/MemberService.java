@@ -37,5 +37,8 @@ public interface MemberService {
 	//등급 상승 신청 중복조회
 	public AuthorityVO overLap(String aid) throws Exception;
 
+	//아이디 중복변경
+	public void memberoverLap(AuthorityVO vo) throws Exception;
+
 
 }

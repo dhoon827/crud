@@ -1,5 +1,6 @@
 package com.board.controller;
 
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.domain.AuthorityVO;
@@ -119,13 +121,19 @@ public class MemberController {
 	
 	//등급 업 신청 페이지 이동
 	@RequestMapping(value = "/authority", method = RequestMethod.GET)
-	public void getAuthority(HttpServletRequest req) throws Exception {
+	public String getAuthority(HttpServletRequest req) throws Exception {
 		List list = null;
 		HttpSession session = req.getSession();
 		list = service.list();
 		System.out.println("리스트에 뭐가 있을까? "+list);
 		System.out.println("여긴? "+session.getAttribute("member"));
-		System.out.println("여기는???? "+session.getAttribute("member.mid"));
+		if(session.getAttribute("member").equals("1")){
+			System.out.println("여기를 타나??!111");
+			
+			return "redirect:/";
+		}
+		System.out.println("여기를타나2222");
+		return null;
 	}
 	
 	//등급 업 신청
@@ -133,6 +141,7 @@ public class MemberController {
 	public String postAuthority(AuthorityVO vo) throws Exception {
 		System.out.println("확인 : "+vo);
 		service.authority(vo);
+		service.memberoverLap(vo);
 		return "redirect:/";
 	}
 	//등급 허락 페이지 리스트 이동

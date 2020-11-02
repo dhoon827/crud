@@ -86,4 +86,15 @@ public class MemberServiceImpl implements MemberService {
 	public AuthorityVO overLap(String aid) throws Exception {
 		return dao.overLap(aid);
 	}
+	
+	//아이디 중복변경
+//	@Override
+//	public void memUpdate(MemberVO mVO) throws Exception{
+//		System.out.println("나오나? :"+mVO);
+//		dao.memUpdate(mVO);
+//	}
+	@Override
+	public void memberoverLap(AuthorityVO vo) throws Exception{
+		dao.memberoverLap(vo);
+	}
 }

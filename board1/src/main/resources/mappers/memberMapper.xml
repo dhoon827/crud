@@ -13,7 +13,7 @@
 
 	<!-- 로그인 -->
 	<select id="loginBcrypt" resultType="com.board.domain.MemberVO">
-		select mid, mname, mpassword, mpower
+		select mid, mname, mpassword, mpower, overlap
 		from member
 		where mid = #{mid}
 	</select>
@@ -64,4 +64,10 @@
 	 	select apropose from authority
     	 where aid = #{aid}
 	</select>
+	
+	<!-- 아이디 중복 변경 -->
+	<update id="memberoverLap" parameterType="com.board.domain.AuthorityVO">
+		update member set overlap = '1' 
+			where mid = #{aid}
+	</update>
 </mapper>

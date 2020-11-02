@@ -78,4 +78,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public AuthorityVO overLap(String aid) throws Exception {
 		return sql.selectOne(namespace+".overLap", aid);
 	}
+	
+	//아이디 중복변경
+	public void memberoverLap(AuthorityVO vo) throws Exception {
+		sql.update(namespace + ".memberoverLap", vo);
+	}
+	
 }
