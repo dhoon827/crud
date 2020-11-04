@@ -61,19 +61,28 @@ public class BoardController {
 	//비회원 게시물 작성
 	@RequestMapping(value = "/openwrite", method = RequestMethod.POST)
 	public String postRegister(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
-		service.write(vo, mpRequest);
+		System.out.println("뭐가들어있으려나??? "+vo);
+		service.openwrite(vo, mpRequest);
 
 		return "redirect:/board/list";
 	}
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public void getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
+	public String getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
 		BoardVO vo = service.view(bnumber);
-
-		model.addAttribute("view", vo);
 		
+		if(vo.getAsecret() == 1) {
+		model.addAttribute("view", vo);
+		System.out.println("비공개글");
 		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 		model.addAttribute("file", fileList);
+		
+		}
+		model.addAttribute("view", vo);
+		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+		model.addAttribute("file", fileList);
+		System.out.println("공개글");
+		return "redirect:/board/view?bnumber="+vo.getBnumber();
 	}
 
 	// 게시물 수정

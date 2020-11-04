@@ -125,8 +125,15 @@ public class MemberController {
 		List list = null;
 		HttpSession session = req.getSession();
 		list = service.list();
+		/*
+		 * Map<String,Object> member =
+		 * (Map<String,Object>)session.getAttribute("member");
+		 * System.out.println("test : "+member);
+		 * System.out.println("머가나오냐... "+member.get("mid"));
+		 */
 		System.out.println("리스트에 뭐가 있을까? "+list);
 		System.out.println("여긴? "+session.getAttribute("member"));
+		System.out.println("id??? "+session.getAttribute("mid"));
 		if(session.getAttribute("member").equals("1")){
 			System.out.println("여기를 타나??!111");
 			

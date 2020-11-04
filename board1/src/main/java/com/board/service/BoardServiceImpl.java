@@ -40,7 +40,19 @@ public class BoardServiceImpl implements BoardService {
 			dao.insertFile(list.get(i));
 		}
 	}
+	
+	//공개글 작성
+	@Override
+	public void openwrite(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
+		dao.openwrite(vo);
 
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(vo, mpRequest);
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			dao.insertFile(list.get(i));
+		}
+	}
+	
 //게시물 조회
 	@Override
 	public BoardVO view(int bnumber) throws Exception {

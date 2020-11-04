@@ -10,6 +10,7 @@ public class BoardVO {
 	private String bcontents;
 	private Date bdate;
 	private int bhits;
+	private int asecret;
 	
 	public BoardVO() {
 		
@@ -71,8 +72,16 @@ public class BoardVO {
 		this.bhits = bhits;
 	}
 
+	public int getAsecret() {
+		return asecret;
+	}
+
+	public void setAsecret(int asecret) {
+		this.asecret = asecret;
+	}
+
 	public BoardVO(int bnumber, String bwriter, String bpassword, String btitle, String bcontents, Date bdate,
-			int bhits) {
+			int bhits, int asecret) {
 		super();
 		this.bnumber = bnumber;
 		this.bwriter = bwriter;
@@ -81,12 +90,16 @@ public class BoardVO {
 		this.bcontents = bcontents;
 		this.bdate = bdate;
 		this.bhits = bhits;
+		this.asecret = asecret;
 	}
 
 	@Override
 	public String toString() {
 		return "BoardVO [bnumber=" + bnumber + ", bwriter=" + bwriter + ", bpassword=" + bpassword + ", btitle="
-				+ btitle + ", bcontents=" + bcontents + ", bdate=" + bdate + ", bhits=" + bhits + "]";
+				+ btitle + ", bcontents=" + bcontents + ", bdate=" + bdate + ", bhits=" + bhits + ", asecret=" + asecret
+				+ "]";
 	}
+
+
 	
 	}

@@ -33,6 +33,12 @@ public class BoardDAOImpl implements BoardDAO {
 
 	}
 
+//공개글 작성
+	@Override
+	public void openwrite(BoardVO vo) throws Exception {
+		sql.insert(namespace + ".openwrite", vo);
+		}
+		
 //게시물 조회
 	public BoardVO view(int bnumber) throws Exception {
 		System.out.println("dbn" + bnumber);

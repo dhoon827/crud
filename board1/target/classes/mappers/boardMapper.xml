@@ -24,12 +24,21 @@
 		#{btitle},
 		#{bcontents})
 	</insert>
+	
+		<!-- 공개글 작성 -->
+	<insert id="openwrite" parameterType="com.board.domain.BoardVO" useGeneratedKeys="true" keyProperty="bnumber">
+		 <selectKey keyProperty="bnumber" resultType="int" order="BEFORE">
+	    	SELECT SEQ_BOARD2.NEXTVAL FROM DUAL
+	    </selectKey>
+		insert into board2 (bnumber, bwriter, btitle, bcontents, bpassword, asecret)
+			values (#{bnumber}, #{bwriter}, #{btitle}, #{bcontents}, #{bpassword}, #{asecret})
+	</insert>
 
 	<!-- 게시물 조회 -->
 	<select id="view" parameterType="int"
 		resultType="com.board.domain.BoardVO">
 		select
-		bnumber, bwriter, btitle, bcontents, bdate, bhits
+		bnumber, bwriter, btitle, bcontents, bdate, bhits, bpassword, asecret
 		from board2
 		where
 		bnumber = #{bnumber}
