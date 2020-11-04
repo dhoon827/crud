@@ -126,8 +126,7 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		list = service.list();
 		/*
-		 * Map<String,Object> member =
-		 * (Map<String,Object>)session.getAttribute("member");
+		 * Map<String,Object> member = (Map<String,Object>)session.getAttribute("member");
 		 * System.out.println("test : "+member);
 		 * System.out.println("머가나오냐... "+member.get("mid"));
 		 */
