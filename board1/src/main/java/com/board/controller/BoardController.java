@@ -70,18 +70,21 @@ public class BoardController {
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
 		BoardVO vo = service.view(bnumber);
-		
+		System.out.println("테스트 : "+vo);
 		if(vo.getAsecret() == 1) {
 		model.addAttribute("view", vo);
 		System.out.println("비공개글");
 		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 		model.addAttribute("file", fileList);
+		return "board/openpassword";
 		
+		}else {
+			model.addAttribute("view", vo);
+			List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+			model.addAttribute("file", fileList);
+			System.out.println("공개글");
+			
 		}
-		model.addAttribute("view", vo);
-		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
-		model.addAttribute("file", fileList);
-		System.out.println("공개글");
 		return "redirect:/board/view?bnumber="+vo.getBnumber();
 	}
 

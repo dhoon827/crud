@@ -121,25 +121,22 @@ public class MemberController {
 	
 	//등급 업 신청 페이지 이동
 	@RequestMapping(value = "/authority", method = RequestMethod.GET)
-	public String getAuthority(HttpServletRequest req) throws Exception {
+	public String getAuthority(@RequestParam("overlap") int overlap, HttpServletRequest req) throws Exception {
 		List list = null;
+		System.out.println("test : "+overlap);
 		HttpSession session = req.getSession();
 		list = service.list();
-		/*
-		 * Map<String,Object> member = (Map<String,Object>)session.getAttribute("member");
-		 * System.out.println("test : "+member);
-		 * System.out.println("머가나오냐... "+member.get("mid"));
-		 */
-		System.out.println("리스트에 뭐가 있을까? "+list);
-		System.out.println("여긴? "+session.getAttribute("member"));
-		System.out.println("id??? "+session.getAttribute("mid"));
-		if(session.getAttribute("member").equals("1")){
-			System.out.println("여기를 타나??!111");
+		//Map<String,Object> member = (Map<String,Object>)session.getAttribute("member");
+		/* System.out.println("리스트에 뭐가 있을까? "+member.get); */
+//		System.out.println("여긴? "+session.getAttribute("member"));
+//		System.out.println("id??? "+session.getAttribute("mid"));
+		if(overlap == 1){
+			System.out.println("중복");
 			
 			return "redirect:/";
 		}
-		System.out.println("여기를타나2222");
-		return null;
+		System.out.println("중복x");
+		return "board/authority";
 	}
 	
 	//등급 업 신청

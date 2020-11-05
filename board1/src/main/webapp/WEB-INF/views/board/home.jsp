@@ -14,7 +14,7 @@
 		<a href="/board/write">게시물 작성</a>
 	</c:if>
 	<c:if test="${member.mpower == 'D'}">
-		<a href="/board/authority">등급 업 신청</a>
+		<a href="/board/authority?overlap=${member.overlap}">등급 업 신청</a>
 	</c:if>
 	<c:if test="${member.mpower == 'A'}">
 		<a href="/board/permissionlist">등업 신청 목록</a>
