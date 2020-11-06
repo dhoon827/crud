@@ -87,7 +87,21 @@ public class BoardController {
 		}
 		return "redirect:/board/view?bnumber="+vo.getBnumber();
 	}
-
+	
+	//게시물 조회(비밀번호 입력)
+	@RequestMapping(value = "/pass", method = RequestMethod.post)
+	public String passView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
+		BoardVO vo = service.view(bnumber);
+		model.addAttribute("view", vo);
+		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+		model.addAttribute("file", fileList);
+		return "board/openpassword";
+		
+			model.addAttribute("view", vo);
+			
+		return "redirect:/board/view?bnumber="+vo.getBnumber();
+	}
+	
 	// 게시물 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void getModify(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
