@@ -9,8 +9,21 @@
 <script type="text/javascript">
 
 function write_btn(){
-	writeForm.submit();	
-}
+	    var length = document.forms[0].length-2;
+	    for ( var i = 0; i < length; i++) { 
+	    /* 	console.log(document.forms[0].elements[i]); */
+	 		if (document.forms[0][i].value == null
+	                || document.forms[0][i].value == "") {
+	        	console.log(length+"실패");
+	            alert(document.forms[0][i].name + "을(를) 입력하세요.");
+	          return false;
+	        }else{
+	        	console.log("성공");
+	        	
+	        	}
+	    }
+	        	writeForm.submit();
+	}
 
 function fn_addFile(){
 	var fileIndex = 1;

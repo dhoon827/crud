@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -53,54 +54,73 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	//비회원 게시물 작성 페이지 이동
-	@RequestMapping(value = "/openwrite", method = RequestMethod.GET)
-	public void getRegister() throws Exception {
-	}
-	
-	//비회원 게시물 작성
-	@RequestMapping(value = "/openwrite", method = RequestMethod.POST)
-	public String postRegister(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
-		System.out.println("뭐가들어있으려나??? "+vo);
-		service.openwrite(vo, mpRequest);
 
-		return "redirect:/board/list";
-	}
+	/*
+	 * //비회원 게시물 작성 페이지 이동
+	 * 
+	 * @RequestMapping(value = "/openwrite", method = RequestMethod.GET) public void
+	 * getRegister() throws Exception { }
+	 * 
+	 * //비회원 게시물 작성
+	 * 
+	 * @RequestMapping(value = "/openwrite", method = RequestMethod.POST) public
+	 * String postRegister(BoardVO vo, MultipartHttpServletRequest mpRequest) throws
+	 * Exception { System.out.println("뭐가들어있으려나??? "+vo); service.openwrite(vo,
+	 * mpRequest);
+	 * 
+	 * return "redirect:/board/list"; }
+	 */
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
 		BoardVO vo = service.view(bnumber);
-		System.out.println("테스트 : "+vo);
 		if(vo.getAsecret() == 1) {
 		model.addAttribute("view", vo);
-		System.out.println("비공개글");
 		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 		model.addAttribute("file", fileList);
 		return "board/openpassword";
-		
-		}else {
+		}
 			model.addAttribute("view", vo);
 			List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 			model.addAttribute("file", fileList);
-			System.out.println("공개글");
-			
-		}
-		return "redirect:/board/view?bnumber="+vo.getBnumber();
+		
+		//return "board/view?bnumber="+vo.getBnumber();
+		return "board/openview";
 	}
 	
 	//게시물 조회(비밀번호 입력)
-	@RequestMapping(value = "/pass", method = RequestMethod.post)
-	public String passView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
+	@RequestMapping(value = "/pass", method = RequestMethod.GET)
+	public String passView(@RequestParam("bnumber") int bnumber, Model model, BoardVO Bvo) throws Exception {
+		System.out.println("Bvo : "+Bvo);
 		BoardVO vo = service.view(bnumber);
-		model.addAttribute("view", vo);
-		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
-		model.addAttribute("file", fileList);
-		return "board/openpassword";
-		
+		if(vo.getBpassword().equals(Bvo.getBpassword())){
 			model.addAttribute("view", vo);
+			if(vo.getAsecret() != 1) {
+				return "redirect:/board/modify?bnumber=" + vo.getBnumber();
+			}
 			
-		return "redirect:/board/view?bnumber="+vo.getBnumber();
+		}else {
+			model.addAttribute("msg","비밀번호가 틀렸습니다");
+			return "board/openpassword?bnumbere="+vo.getBnumber();
+		}
+		return "board/view";
 	}
+	/*
+	 * //공개글 수정(비밀번호 입력)
+	 * 
+	 * @RequestMapping(value = "/openupdatepwd", method = RequestMethod.GET) public
+	 * String passupdate(@RequestParam("bnumber") int bnumber, Model model) throws
+	 * Exception { BoardVO vo = service.view(bnumber);
+	 * model.addAttribute("view",vo); return "board/openpassword"; }
+	 * 
+	 * //공개글 삭제(비밀번호 입력)
+	 * 
+	 * @RequestMapping(value = "/opendeletepwd", method = RequestMethod.GET) public
+	 * String passdelete(@RequestParam("bnumber") int bnumber, Model model) throws
+	 * Exception { BoardVO vo = service.view(bnumber);
+	 * model.addAttribute("view",vo); return "board/openpassword"; }
+	 */
+		
 	
 	// 게시물 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
@@ -154,31 +174,4 @@ public class BoardController {
 		
 	}
 	
-	
-
-	/*
-	 * // 게시물 목록 + 페이징 추가 게시물 총 갯수
-	 * 
-	 * @RequestMapping(value = "/listpage", method = RequestMethod.GET) public void
-	 * getListPage(Model model) throws Exception {
-	 * 
-	 * List list = null; list = service.list(); model.addAttribute("list", list); }
-	 * 
-	 * // 게시물 목록 + 페이징 추가
-	 * 
-	 * @RequestMapping(value = "/listPage", method = RequestMethod.GET) public void
-	 * getListPage(Model model, @RequestParam("num") int num) throws Exception {
-	 * 
-	 * // 게시물 총 갯수 int count = service.count();
-	 * 
-	 * // 한 페이지에 출력할 게시물 갯수 int postNum = 10;
-	 * 
-	 * // 하단 페이징 번호 ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림) int pageNum =
-	 * (int)Math.ceil((double)count/postNum);
-	 * 
-	 * // 출력할 게시물 int displayPost = (num - 1) * postNum;
-	 * 
-	 * List list = null; list = service.listPage(displayPost, postNum);
-	 * model.addAttribute("list", list); model.addAttribute("pageNum", pageNum); }
-	 */
 }

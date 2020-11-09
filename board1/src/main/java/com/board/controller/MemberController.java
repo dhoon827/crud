@@ -121,7 +121,7 @@ public class MemberController {
 	
 	//등급 업 신청 페이지 이동
 	@RequestMapping(value = "/authority", method = RequestMethod.GET)
-	public String getAuthority(@RequestParam("overlap") int overlap, HttpServletRequest req) throws Exception {
+	public String getAuthority(@RequestParam("overlap") int overlap, HttpServletRequest req,Model model) throws Exception {
 		List list = null;
 		System.out.println("test : "+overlap);
 		HttpSession session = req.getSession();
@@ -132,8 +132,9 @@ public class MemberController {
 //		System.out.println("id??? "+session.getAttribute("mid"));
 		if(overlap == 1){
 			System.out.println("중복");
-			
-			return "redirect:/";
+			model.addAttribute("msg","이미 신청하셨습니다.");
+			model.addAttribute("url","/");
+			return "board/overlap";
 		}
 		System.out.println("중복x");
 		return "board/authority";
