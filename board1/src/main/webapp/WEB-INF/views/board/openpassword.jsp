@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <script>
+
 function passbtn(){
  /* 	console.log("입력 비밀번호"+$("#apassword").val());
 	console.log("비밀번호체크"+$("#pwdck").val());

@@ -83,8 +83,6 @@ public class BoardController {
 			model.addAttribute("view", vo);
 			List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 			model.addAttribute("file", fileList);
-		
-		//return "board/view?bnumber="+vo.getBnumber();
 		return "board/openview";
 	}
 	
@@ -96,13 +94,17 @@ public class BoardController {
 		if(vo.getBpassword().equals(Bvo.getBpassword())){
 			model.addAttribute("view", vo);
 			if(vo.getAsecret() != 1) {
+				System.out.println("비밀글이 아니면");
 				return "redirect:/board/modify?bnumber=" + vo.getBnumber();
 			}
 			
 		}else {
+			System.out.println("비밀번호 틀림");
+			model.addAttribute("view", vo);
 			model.addAttribute("msg","비밀번호가 틀렸습니다");
-			return "board/openpassword?bnumbere="+vo.getBnumber();
+			return "board/openpassword";
 		}
+		System.out.println("비밀번호 맞음");
 		return "board/view";
 	}
 	/*
