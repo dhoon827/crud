@@ -8,7 +8,17 @@
 <title>Insert title here</title>
 </head>
 <script>
-
+/* $(document).ready(function(){
+	console.log("msg : "+msg);
+	console.log("view : "+view);
+}) */
+$(document).ready(function(){
+    if(${msg != null}){
+    var msg = '${msg}';
+    console.log('${msg}');
+    	alert(msg);
+    }
+})
 function passbtn(){
  /* 	console.log("입력 비밀번호"+$("#apassword").val());
 	console.log("비밀번호체크"+$("#pwdck").val());

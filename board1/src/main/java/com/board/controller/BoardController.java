@@ -41,7 +41,6 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void getWirte(HttpSession session, Model model) throws Exception {
 		Object loginInfo = session.getAttribute("member");
-
 		if(loginInfo == null) {
 		 model.addAttribute("msg", false);
 		}
@@ -49,27 +48,16 @@ public class BoardController {
 
 	// 게시물 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String posttWirte(BoardVO vo, MultipartHttpServletRequest mpRequest) throws Exception {
-		service.write(vo, mpRequest);
-		
+	public String posttWirte(BoardVO vo, MultipartHttpServletRequest mpRequest, HttpSession session) throws Exception {
+		Object chk = session.getAttribute("member");
+		if(chk != null) {
+			service.write(vo, mpRequest);
+		}else {
+			service.openwrite(vo, mpRequest);
+		}
 		return "redirect:/board/list";
 	}
 
-	/*
-	 * //비회원 게시물 작성 페이지 이동
-	 * 
-	 * @RequestMapping(value = "/openwrite", method = RequestMethod.GET) public void
-	 * getRegister() throws Exception { }
-	 * 
-	 * //비회원 게시물 작성
-	 * 
-	 * @RequestMapping(value = "/openwrite", method = RequestMethod.POST) public
-	 * String postRegister(BoardVO vo, MultipartHttpServletRequest mpRequest) throws
-	 * Exception { System.out.println("뭐가들어있으려나??? "+vo); service.openwrite(vo,
-	 * mpRequest);
-	 * 
-	 * return "redirect:/board/list"; }
-	 */
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public String getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {

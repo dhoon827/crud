@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mappers.board">
+
+	<!-- 게시물 목록 -->
+	<select id="list" resultType="com.board.domain.BoardVO">
+		select
+		bnumber, bwriter, btitle,
+		bcontents, bdate ,bhits
+		from board.board2
+		order by bnumber desc
+	</select>
+	<!-- 게시물 작성 -->
+	<insert id="write" parameterType="com.board.domain.BoardVO" useGeneratedKeys="true" keyProperty="bnumber">
+		 <selectKey keyProperty="bnumber" resultType="int" order="BEFORE">
+	    	SELECT SEQ_BOARD2.NEXTVAL FROM DUAL
+	    </selectKey>
+		insert into
+		board2(bnumber,
+		bwriter, btitle, bcontents)
+		values(#{bnumber}, #{bwriter},
+		#{btitle},
+		#{bcontents})
+	</insert>
+	
+		<!-- 공개글 작성 -->
+	<insert id="openwrite" parameterType="com.board.domain.BoardVO" useGeneratedKeys="true" keyProperty="bnumber">
+		 <selectKey keyProperty="bnumber" resultType="int" order="BEFORE">
+	    	SELECT SEQ_BOARD2.NEXTVAL FROM DUAL
+	    </selectKey>
+		insert into board2 (bnumber, bwriter, btitle, bcontents, bpassword, asecret)
+			values (#{bnumber}, #{bwriter}, #{btitle}, #{bcontents}, #{bpassword}, #{asecret})
+	</insert>
+
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int"
+		resultType="com.board.domain.BoardVO">
+		select
+		bnumber, bwriter, btitle, bcontents, bdate, bhits, bpassword, asecret
+		from board2
+		where
+		bnumber = #{bnumber}
+	</select>
+
+	<!-- 게시물 수정 -->
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		update board2
+		set
+		btitle =
+		#{btitle},
+		bcontents = #{bcontents},
+		bwriter = #{bwriter}
+		where bnumber =
+		#{bnumber}
+	</update>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete
+		from board2
+		where bnumber
+		= #{bnumber}
+	</delete>
+	
+	<!-- 파일첨부 -->
+	<insert id="insertFile" parameterType="hashMap">
+		INSERT INTO MP_FILE(
+			FILE_NO,
+			BNUMBER,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_MP_FILE_NO.NEXTVAL,
+			#{BNUMBER},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
+    <!-- 첨부파일 조회 -->
+<select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT FILE_NO,
+		   ORG_FILE_NAME,
+		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+	  FROM MP_FILE
+	 WHERE BNUMBER = #{BNUMBER}
+	   AND DEL_GB = 'N'
+	   ORDER BY FILE_NO ASC
+</select>
+
+<!-- 첨부파일 다운 -->
+<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+	SELECT 
+		STORED_FILE_NAME,
+		ORG_FILE_NAME
+	FROM MP_FILE
+	WHERE FILE_NO = #{FILE_NO}
+</select>
+
+<!-- 첨부파일 수정 -->
+ <update id="updateFile" parameterType="hashMap">
+    	UPDATE MP_FILE SET
+    	DEL_GB = 'Y'
+    	WHERE FILE_NO = #{FILE_NO}
+    </update>
+
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+		select count(bnumber) from board2
+	</select>
+
+
+<!-- 	
+	게시물 목록 + 페이징
+	<select id="listPage" parameterType="hashMap" resultType="com.board.domain.BoardVO">
+	  select 
+	   bnumber, btitle, bcontents, bwriter, bdate, bhits
+	from board2
+	where select bnumber, btitle, bcontents, bwriter, bdate, bhits,
+               row_number() over(order by bnumber desc) as rNum
+           from board2
+     ) mb
+    where rNum between #{displayPost} and #{postNum}
+        order by bnumber desc
+	</select> -->
+</mapper>
