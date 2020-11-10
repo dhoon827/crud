@@ -43,6 +43,9 @@ function fn_fileDown(fileNo){
 			<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
 		</c:forEach>
 	</div>
+	<h1>test1 ${member.mid}</h1><br>
+	<h1>test2 ${member}</h1><br>
+	<h1>test3 ${view.asecret}</h1><br>
 	<div>
 	<c:if test="${member.mid == view.bwriter}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
@@ -50,9 +53,16 @@ function fn_fileDown(fileNo){
 	<c:if test="${member.mid == view.bwriter || member.mpower == 'A'}">
 		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 	</c:if>
-<%-- 	<c:if test="${member.mpassword != null}">
+ 	<c:if test="${member == null && view.asecret == 0}">
+		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
+		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 삭제</a>
+		익명 공개글
+	</c:if> 
+	<c:if test="${member == null && view.asecret == 1}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
-	</c:if> --%>
+		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
+		익명 비밀글
+	</c:if> 
 	</div>
 </body>
 </html>

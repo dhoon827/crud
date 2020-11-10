@@ -60,18 +60,36 @@ public class BoardController {
 
 	// 게시물 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String getView(@RequestParam("bnumber") int bnumber, Model model) throws Exception {
+	public String getView(@RequestParam("bnumber") int bnumber, Model model, HttpSession session) throws Exception {
+		Object chk = session.getAttribute("member");
 		BoardVO vo = service.view(bnumber);
-		if(vo.getAsecret() == 1) {
+		if(chk == null) {
+			if(vo.getAsecret() == 1) {
+				model.addAttribute("view", vo);
+				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+				model.addAttribute("file", fileList);
+				return "board/openpassword";
+				}
+				model.addAttribute("view", vo);
+				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+				model.addAttribute("file", fileList);
+				return "board/view";
+		}else if(chk != null) {
+			if(vo.getAsecret() == 1) {
+				model.addAttribute("view", vo);
+				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+				model.addAttribute("file", fileList);
+				return "board/openpassword";
+				}
+				model.addAttribute("view", vo);
+				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
+				model.addAttribute("file", fileList);
+				return "board/view";
+		}
 		model.addAttribute("view", vo);
 		List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
 		model.addAttribute("file", fileList);
-		return "board/openpassword";
-		}
-			model.addAttribute("view", vo);
-			List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
-			model.addAttribute("file", fileList);
-		return "board/openview";
+		return "board/view";
 	}
 	
 	//게시물 조회(비밀번호 입력)

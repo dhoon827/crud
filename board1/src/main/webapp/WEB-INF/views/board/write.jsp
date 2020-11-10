@@ -77,12 +77,15 @@ function fn_addFile(){
 <label>내용</label>
 <textarea cols="50" rows="5" id="bcontent" name="bcontents"></textarea><br />
 
+<%-- <label>비밀글</label>
+<input type="checkbox" id="asecret" name="asecret" value="1">
+<input type="hidden" id="bpassword" name="bpassword" value="${member.mpassword}" readonly="readonly"/><br /> --%>
 
 <div id="fileIndex">
 
 </div>
 
-<button type="button" onClick="write_btn(); return false" name ="btn1">작성</button>
+<button type="button" onClick="write_btn()" name ="btn1">작성</button>
 <button class="fileAdd_btn" type="button" name ="btn2">파일추가</button>	
 
 </form>
