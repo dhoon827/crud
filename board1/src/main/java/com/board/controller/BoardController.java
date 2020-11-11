@@ -91,6 +91,11 @@ public class BoardController {
 		model.addAttribute("file", fileList);
 		return "board/view";
 	}
+	//비밀번호 입력 페이지 이동
+	@RequestMapping(value="/openpassword", method=RequestMethod.GET)
+	public void openPass(@RequestParam("bnumber") int bnumber,Model model)throws Exception{
+		model.addAttribute("bnumber", bnumber);
+	}
 	
 	//게시물 조회(비밀번호 입력)
 	@RequestMapping(value = "/pass", method = RequestMethod.GET)
@@ -102,6 +107,10 @@ public class BoardController {
 			if(vo.getAsecret() != 1) {
 				System.out.println("비밀글이 아니면");
 				return "redirect:/board/modify?bnumber=" + vo.getBnumber();
+			}else if(vo.getAsecret() == 1) {
+				System.out.println("비밀글");
+				System.out.println("비밀번호 맞음");
+				return "board/view";
 			}
 			
 		}else {
@@ -113,22 +122,7 @@ public class BoardController {
 		System.out.println("비밀번호 맞음");
 		return "board/view";
 	}
-	/*
-	 * //공개글 수정(비밀번호 입력)
-	 * 
-	 * @RequestMapping(value = "/openupdatepwd", method = RequestMethod.GET) public
-	 * String passupdate(@RequestParam("bnumber") int bnumber, Model model) throws
-	 * Exception { BoardVO vo = service.view(bnumber);
-	 * model.addAttribute("view",vo); return "board/openpassword"; }
-	 * 
-	 * //공개글 삭제(비밀번호 입력)
-	 * 
-	 * @RequestMapping(value = "/opendeletepwd", method = RequestMethod.GET) public
-	 * String passdelete(@RequestParam("bnumber") int bnumber, Model model) throws
-	 * Exception { BoardVO vo = service.view(bnumber);
-	 * model.addAttribute("view",vo); return "board/openpassword"; }
-	 */
-		
+	
 	
 	// 게시물 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +29,13 @@ function passbtn(){
 <h1>openpassword.jsp</h1>
 <form action="pass" name="passform" method="get">
 <label>비밀번호를 입력하세요</label>
+<c:if test="${bnumber != null}">
+<input type="hidden" id="bnumber" name="bnumber" value="${bnumber}">
+</c:if>
 <input type="password" id="bpassword" name="bpassword" /><br />
+<c:if test="${view != null}">
 <input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+</c:if>
 <button type="button" class="pwdbtn" onclick="passbtn()">입력</button>
 </form>
 </body>
