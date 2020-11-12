@@ -133,8 +133,7 @@ public class MemberController {
 		if(overlap == 1){
 			System.out.println("중복");
 			model.addAttribute("msg","이미 신청하셨습니다.");
-			model.addAttribute("url","/");
-			return "board/overlap";
+			return "/";
 		}
 		System.out.println("중복x");
 		return "board/authority";

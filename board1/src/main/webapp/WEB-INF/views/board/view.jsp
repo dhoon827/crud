@@ -91,11 +91,15 @@ $(".delbtn").click(function(){
 		<%-- <a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
 		<a href="/board/openpassword?bdnumber=${view.bnumber}">게시물 삭제</a>--%>
 		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
-		<input type="hidden" id="bdnumber" name="bdnumber" value="${view.bnumber}">
-		<button class="modbtn">게시물 수정</button>
-		<button class="delbtn">게시물 삭제</button>
-		익명 공개글
+		<input type="hidden" id="bdnumber" name="bdnumber" value="0">
+		<button onclick="submit" class="modbtn">게시물 수정</button>
  	</form>
+ 	<form action="openpassword" name="pwdform">
+		<input type="hidden" id="bnumber" name="bnumber" value="0">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="${view.bnumber}">
+		<button onclick="submit" class="delbtn">게시물 삭제</button>
+ 	</form>
+		익명 공개글
 	</c:if> 
 	<c:if test="${member == null && view.asecret == 1}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>

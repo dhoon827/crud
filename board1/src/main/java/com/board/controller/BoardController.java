@@ -85,12 +85,8 @@ public class BoardController {
 	//비밀번호 입력 페이지 이동
 	@RequestMapping(value="/openpassword", method=RequestMethod.GET)
 	public void openPass(@RequestParam("bnumber") int bnumber, @RequestParam("bdnumber") int bdnumber,Model model,HttpServletRequest request)throws Exception{
-		if(bdnumber != 0) {
-		System.out.println("공개글 삭제");
-			model.addAttribute("bdnumber", bdnumber);
-		}else {
 			model.addAttribute("bnumber"+bnumber);
-		}
+			model.addAttribute("bdnumber"+bdnumber);
 	}
 	
 	//게시물 조회(비밀번호 입력)

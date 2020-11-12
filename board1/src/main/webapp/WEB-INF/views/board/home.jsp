@@ -4,6 +4,15 @@
 <html>
 <head>
 <title>Home</title>
+<script>
+$(document).ready(function(){
+    if(${msg != null}){
+    var msg = '${msg}';
+    console.log('${msg}');
+    	alert(msg);
+    }
+})
+</script>
 </head>
 <body>
 	<h1>Hello world!</h1>
