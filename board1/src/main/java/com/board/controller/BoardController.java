@@ -64,17 +64,7 @@ public class BoardController {
 		Object chk = session.getAttribute("member");
 		BoardVO vo = service.view(bnumber);
 		if(chk == null) {
-			if(vo.getAsecret() == 1) {
-				model.addAttribute("view", vo);
-				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
-				model.addAttribute("file", fileList);
-				return "board/openpassword";
-				}
-				model.addAttribute("view", vo);
-				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
-				model.addAttribute("file", fileList);
-				return "board/view";
-		}else if(chk != null) {
+			
 			if(vo.getAsecret() == 1) {
 				model.addAttribute("view", vo);
 				List<Map<String, Object>> fileList = service.selectFileList(vo.getBnumber());
@@ -91,15 +81,22 @@ public class BoardController {
 		model.addAttribute("file", fileList);
 		return "board/view";
 	}
+	
 	//비밀번호 입력 페이지 이동
 	@RequestMapping(value="/openpassword", method=RequestMethod.GET)
-	public void openPass(@RequestParam("bnumber") int bnumber,Model model)throws Exception{
-		model.addAttribute("bnumber", bnumber);
+	public void openPass(@RequestParam("bnumber") int bnumber, @RequestParam("bdnumber") int bdnumber,Model model,HttpServletRequest request)throws Exception{
+		if(bdnumber != 0) {
+		System.out.println("공개글 삭제");
+			model.addAttribute("bdnumber", bdnumber);
+		}else {
+			model.addAttribute("bnumber"+bnumber);
+		}
 	}
 	
 	//게시물 조회(비밀번호 입력)
-	@RequestMapping(value = "/pass", method = RequestMethod.GET)
-	public String passView(@RequestParam("bnumber") int bnumber, Model model, BoardVO Bvo) throws Exception {
+	@RequestMapping(value = {"/pass","/bdpass"}, method = RequestMethod.GET)
+	public String passView(@RequestParam("bnumber") int bnumber,@RequestParam("bdnumber") int bdnumber,HttpServletRequest request, Model model, BoardVO Bvo) throws Exception {
+		if(request.getServletPath().equals("/pass")) {
 		System.out.println("Bvo : "+Bvo);
 		BoardVO vo = service.view(bnumber);
 		if(vo.getBpassword().equals(Bvo.getBpassword())){
@@ -112,7 +109,6 @@ public class BoardController {
 				System.out.println("비밀번호 맞음");
 				return "board/view";
 			}
-			
 		}else {
 			System.out.println("비밀번호 틀림");
 			model.addAttribute("view", vo);
@@ -121,6 +117,16 @@ public class BoardController {
 		}
 		System.out.println("비밀번호 맞음");
 		return "board/view";
+		}
+		bnumber = bdnumber;
+		BoardVO vo = service.view(bnumber);
+		if(vo.getBpassword().equals(Bvo.getBpassword())){
+			return "redirect:/board/delete?bnumber="+vo.getBnumber();
+		}
+		System.out.println("비밀번호 틀림");
+		model.addAttribute("view", vo);
+		model.addAttribute("msg","비밀번호가 틀렸습니다");
+		return "board/openpassword";
 	}
 	
 	

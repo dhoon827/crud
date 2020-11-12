@@ -15,6 +15,39 @@ function fn_fileDown(fileNo){
 	formObj.submit();
 }
 
+/* $(".modbtn").click(function(){
+	var bnumber = $("#bnumber").val();
+	var bdnumber = 0
+	$.ajax({
+		url : "/board/openpassword",
+		type : "post",
+		data : {"bnumber" : bnumber, "bdnumber" : bdnumber},
+		dataType : "json",
+		success : function(data){
+			
+		}error : function(data){
+			alert("잠시후에 다시해주세요");
+			return false;
+		}
+	});
+});
+
+$(".delbtn").click(function(){
+	var bnumber = 0
+	var bdnumber = $("#bdnumber").val();
+	$.ajax({
+		url : "/board/openpassword",
+		type : "post",
+		data : {"bnumber" : bnumber, "bdnumber" : bdnumber},
+		dataType : "json",
+		success : function(data){
+			
+		}error : function(data){
+			alert("잠시후에 다시해주세요");
+			return false;
+		}
+	});
+}); */
 
 </script>
 </head>
@@ -54,9 +87,15 @@ function fn_fileDown(fileNo){
 		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 	</c:if>
  	<c:if test="${member == null && view.asecret == 0}">
-		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
-		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 삭제</a>
+ 	<form action="openpassword" name="pwdform">
+		<%-- <a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
+		<a href="/board/openpassword?bdnumber=${view.bnumber}">게시물 삭제</a>--%>
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="${view.bnumber}">
+		<button class="modbtn">게시물 수정</button>
+		<button class="delbtn">게시물 삭제</button>
 		익명 공개글
+ 	</form>
 	</c:if> 
 	<c:if test="${member == null && view.asecret == 1}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
