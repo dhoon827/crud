@@ -1,26 +1,30 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <title>Home</title>
+<script>
+$(document).ready(function(){
+    if(${msg != null}){
+    var msg = '${msg}';
+    console.log('${msg}');
+    	alert(msg);
+    }
+})
+</script>
 </head>
 <body>
 	<h1>Hello world!</h1>
 
 	<P>The time on the server is ${serverTime}.</P>
 		<a href="/board/list">게시물 목록</a> 
-	<c:if test="${member.mpower == 'C'||member.mpower == 'A'}">
 		<a href="/board/write">게시물 작성</a>
-	</c:if>
 	<c:if test="${member.mpower == 'D'}">
 		<a href="/board/authority?overlap=${member.overlap}">등급 업 신청</a>
 	</c:if>
 	<c:if test="${member.mpower == 'A'}">
 		<a href="/board/permissionlist">등업 신청 목록</a>
-	</c:if>
-	<c:if test="${member == null}">
-		<a href="/board/openwrite">게시물 작성(익명)</a>
 	</c:if>
 	<c:if test="${member == null }">
 		<form role="form" method="post" autocomplete="off" action="/board/login">

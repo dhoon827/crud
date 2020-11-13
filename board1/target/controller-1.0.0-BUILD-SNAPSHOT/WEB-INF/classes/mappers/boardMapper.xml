@@ -23,6 +23,8 @@
 		values(#{bnumber}, #{bwriter},
 		#{btitle},
 		#{bcontents})
+<!-- 		insert into board2 (bnumber, bwriter, btitle, bcontents, bpassword, asecret)
+			values (#{bnumber}, #{bwriter}, #{btitle}, #{bcontents}, #{bpassword}, #{asecret}) -->
 	</insert>
 	
 		<!-- 공개글 작성 -->

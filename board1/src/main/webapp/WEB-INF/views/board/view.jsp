@@ -49,6 +49,21 @@ $(".delbtn").click(function(){
 	});
 }); */
 
+
+function test_fn(){
+	testForm.action="/board/openpassword";
+	console.log(testForm);
+	testForm.submit();
+}
+
+function test_fn2(){
+	testForm2.action="/board/openpassword";
+	console.log(testForm);
+	testForm2.submit();
+}
+
+
+
 </script>
 </head>
 <body>
@@ -87,25 +102,48 @@ $(".delbtn").click(function(){
 		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 	</c:if>
  	<c:if test="${member == null && view.asecret == 0}">
- 	<form action="openpassword" name="pwdform">
-		<%-- <a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
-		<a href="/board/openpassword?bdnumber=${view.bnumber}">게시물 삭제</a>--%>
+ 	
+ 	
+ 	<form name="testForm" method="post">
 		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
-		<input type="hidden" id="bdnumber" name="bdnumber" value="0">
-		<button onclick="submit" class="modbtn">게시물 수정</button>
+		<input type="hidden" id="bdnumber" name="bdnumber" value="2">
+		<a href="javascript:;" onclick="test_fn(); return false">게시물 수정</a>
  	</form>
- 	<form action="openpassword" name="pwdform">
-		<input type="hidden" id="bnumber" name="bnumber" value="0">
-		<input type="hidden" id="bdnumber" name="bdnumber" value="${view.bnumber}">
+ 	
+ 	<form name="testForm2" method="post">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="1">
+		<a href="javascript:;" onclick="test_fn2(); return false">게시물 삭제</a>
+ 	</form>
+ 	
+ 	
+ <%-- 	<form action="/board/openpassword" name="pwdform" method="post">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="2">
+		<input type="submit" class="modbtn" value="게시물 수정">
+ 	</form>
+ 	
+ 	
+		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
+		<a href="/board/openpassword?bdnumber=${view.bnumber}">게시물 삭제</a>
+		
+		
+ 	<form action="openpassword" name="pwdform2">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value=1>
 		<button onclick="submit" class="delbtn">게시물 삭제</button>
- 	</form>
+ 	</form> --%>
 		익명 공개글
 	</c:if> 
+	
+	
 	<c:if test="${member == null && view.asecret == 1}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
 		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 		익명 비밀글
-	</c:if> 
+	</c:if>
+	
+	 
 	</div>
 </body>
 </html>

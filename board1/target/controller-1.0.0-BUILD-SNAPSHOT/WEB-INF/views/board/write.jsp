@@ -7,34 +7,11 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>게시물 작성</title>
 <script type="text/javascript">
-/* $(document).ready(function(){
-	var formObj = $("form[name='writeForm']");
-	$(".write_btn").on("click", function(){
-		if()
-		formObj.submit();
-	});
-	fn_addFile();
-}) */
-
-/*  function write_btn(){
-
-  	if($("#btitle").val() == null || $("#btitle").val() == ""){
-		alert("비어있다.");
-		return false;
-	}else {
-	 writeForm.submit(); 
-	}
-	
-}  */
 
 function write_btn() {
 	// submit을 제외한 모든 input태그의 갯수를 가져옴
-	var wrName = document.forms[0][4];
-	/* console.log(wrName); */
-	
 	    var length = document.forms[0].length-2;
 	    for ( var i = 0; i < length; i++) { 
-	    /* 	console.log(document.forms[0].elements[i]); */
 	 		if (document.forms[0][i].value == null
 	                || document.forms[0][i].value == "") {
 	        	console.log(length+"실패");
@@ -47,6 +24,22 @@ function write_btn() {
 	    }
 	        	writeForm.submit();
 	}
+	
+function openwrite_btn(){
+    var length = document.forms[0].length-2;
+    for ( var i = 0; i < length; i++) { 
+ 		if (document.forms[0][i].value == null
+                || document.forms[0][i].value == "") {
+        	console.log(length+"실패");
+            alert(document.forms[0][i].name + "을(를) 입력하세요.");
+          return false;
+        }else{
+        	console.log("성공");
+        	
+        	}
+    }
+        	writeForm.submit();
+}
 
 
 
@@ -72,6 +65,7 @@ function fn_addFile(){
  
 </div>
 <c:if test="${msg == null}">
+<p>로그인</p>
 <form name="writeForm" method="post" enctype="multipart/form-data">
 
 <label>제목</label>
@@ -83,23 +77,48 @@ function fn_addFile(){
 <label>내용</label>
 <textarea cols="50" rows="5" id="bcontent" name="bcontents"></textarea><br />
 
+<%-- <label>비밀글</label>
+<input type="checkbox" id="asecret" name="asecret" value="1">
+<input type="hidden" id="bpassword" name="bpassword" value="${member.mpassword}" readonly="readonly"/><br /> --%>
 
 <div id="fileIndex">
 
 </div>
-<!-- <label>파일첨부</label>
-<input type="file" name="file" /><br />
- -->
 
-
-<button type="button" onClick="write_btn(); return false" name ="btn1">작성</button>
+<button type="button" onClick="write_btn()" name ="btn1">작성</button>
 <button class="fileAdd_btn" type="button" name ="btn2">파일추가</button>	
 
 </form>
 </c:if>
+
 <c:if test="${msg == false}">
-	<p>로그인을 하셔야 글을 작성할 수 있습니다.</p>
-	<p><a href="/">홈으로</a></p>
+	<p>익명</p>
+	<form name="writeForm" method="post" enctype="multipart/form-data">
+
+<label>제목</label>
+<input type="text" id="btitle" name="btitle" /><br />
+<label>비밀번호</label>
+<input type="password" id="bpassword" name="bpassword" /><br />
+
+<label>작성자</label>
+<input type="text" id="bwriter" name="bwriter"/><br />
+
+<label>내용</label>
+<textarea cols="50" rows="5" id="bcontent" name="bcontents"></textarea><br />
+
+<label>비밀글</label>
+<input type="checkbox" id="asecret" name="asecret" value="1">
+
+<div id="fileIndex">
+
+</div>
+
+
+<button type="button" onClick="openwrite_btn()" name ="btn1">작성</button>
+<button class="fileAdd_btn" type="button" name ="btn2">파일추가</button>	
+
+</form>
 </c:if>
+	<p><a href="/">홈으로</a></p>
 </body>
 </html>

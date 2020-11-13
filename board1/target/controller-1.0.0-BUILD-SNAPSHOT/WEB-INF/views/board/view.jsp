@@ -15,6 +15,47 @@ function fn_fileDown(fileNo){
 	formObj.submit();
 }
 
+/* $(".modbtn").click(function(){
+	var bnumber = $("#bnumber").val();
+	var bdnumber = 0
+	$.ajax({
+		url : "/board/openpassword",
+		type : "post",
+		data : {"bnumber" : bnumber, "bdnumber" : bdnumber},
+		dataType : "json",
+		success : function(data){
+			
+		}error : function(data){
+			alert("잠시후에 다시해주세요");
+			return false;
+		}
+	});
+});
+
+$(".delbtn").click(function(){
+	var bnumber = 0
+	var bdnumber = $("#bdnumber").val();
+	$.ajax({
+		url : "/board/openpassword",
+		type : "post",
+		data : {"bnumber" : bnumber, "bdnumber" : bdnumber},
+		dataType : "json",
+		success : function(data){
+			
+		}error : function(data){
+			alert("잠시후에 다시해주세요");
+			return false;
+		}
+	});
+}); */
+
+
+function test_fn(){
+	testForm.action="/board/openpassword";
+	console.log(testForm);
+	testForm.submit();
+}
+
 
 </script>
 </head>
@@ -43,6 +84,9 @@ function fn_fileDown(fileNo){
 			<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
 		</c:forEach>
 	</div>
+	<h1>test1 ${member.mid}</h1><br>
+	<h1>test2 ${member}</h1><br>
+	<h1>test3 ${view.asecret}</h1><br>
 	<div>
 	<c:if test="${member.mid == view.bwriter}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
@@ -50,9 +94,43 @@ function fn_fileDown(fileNo){
 	<c:if test="${member.mid == view.bwriter || member.mpower == 'A'}">
 		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
 	</c:if>
-<%-- 	<c:if test="${member.mpassword != null}">
+ 	<c:if test="${member == null && view.asecret == 0}">
+ 	
+ 	
+ 	<form name="testForm">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="2">
+		<a href="javascript:;" onclick="test_fn(); return false">게시물 수정</a>
+ 	</form>
+ 	
+ 	
+ <%-- 	<form action="/board/openpassword" name="pwdform" method="post">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="2">
+		<input type="submit" class="modbtn" value="게시물 수정">
+ 	</form>
+ 	
+ 	
+		<a href="/board/openpassword?bnumber=${view.bnumber}">게시물 수정</a>
+		<a href="/board/openpassword?bdnumber=${view.bnumber}">게시물 삭제</a>
+		
+		
+ 	<form action="openpassword" name="pwdform2">
+		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
+		<input type="hidden" id="bdnumber" name="bdnumber" value=1>
+		<button onclick="submit" class="delbtn">게시물 삭제</button>
+ 	</form> --%>
+		익명 공개글
+	</c:if> 
+	
+	
+	<c:if test="${member == null && view.asecret == 1}">
 		<a href="/board/modify?bnumber=${view.bnumber}">게시물 수정</a>
-	</c:if> --%>
+		<a href="/board/delete?bnumber=${view.bnumber}">게시물 삭제</a>
+		익명 비밀글
+	</c:if>
+	
+	 
 	</div>
 </body>
 </html>
