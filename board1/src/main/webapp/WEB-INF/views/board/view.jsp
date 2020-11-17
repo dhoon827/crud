@@ -106,15 +106,12 @@ function test_fn2(){
  	
  	<form name="testForm" method="post">
 		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
-		<input type="hidden" id="bdnumber" name="bdnumber" value="2">
+		<input type="hidden" id="bdnumber" name="bdnumber" value="">
+		<a href="javascript:;" onclick="test_fn2(); return false">게시물 삭제</a>
 		<a href="javascript:;" onclick="test_fn(); return false">게시물 수정</a>
  	</form>
  	
- 	<form name="testForm2" method="post">
-		<input type="hidden" id="bnumber" name="bnumber" value="${view.bnumber}">
-		<input type="hidden" id="bdnumber" name="bdnumber" value="1">
-		<a href="javascript:;" onclick="test_fn2(); return false">게시물 삭제</a>
- 	</form>
+
  	
  	
  <%-- 	<form action="/board/openpassword" name="pwdform" method="post">

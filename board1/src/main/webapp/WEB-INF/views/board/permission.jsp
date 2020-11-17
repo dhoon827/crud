@@ -32,6 +32,7 @@ ${member.mid}
 <input type="hidden" id="anumber" name="anumber" value="${list.anumber}">
 <input type="hidden" id="aid" name="aid" value="${list.aid}">
 <input type="hidden" id="aupdate" name="aupdate" value="">
+
 <table border="1">
 		
 			<tr>
