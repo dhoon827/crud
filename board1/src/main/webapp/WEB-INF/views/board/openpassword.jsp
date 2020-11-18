@@ -48,6 +48,7 @@ function passbtn(){
 		</form>
 	</c:if>
 	
+	
 	<c:if test="${bdnumber == 2}">
 		<form action="pass" name="passform" method="get">
 			<label>비밀번호를 입력하세요</label>
