@@ -32,23 +32,6 @@ function fn_fileDown(fileNo){
 	});
 });
 
-$(".delbtn").click(function(){
-	var bnumber = 0
-	var bdnumber = $("#bdnumber").val();
-	$.ajax({
-		url : "/board/openpassword",
-		type : "post",
-		data : {"bnumber" : bnumber, "bdnumber" : bdnumber},
-		dataType : "json",
-		success : function(data){
-			
-		}error : function(data){
-			alert("잠시후에 다시해주세요");
-			return false;
-		}
-	});
-}); */
-
 
 function test_fn(){
 	testForm.action="/board/openpassword";
@@ -84,6 +67,7 @@ function test_fn2(){
 	<label>내용</label>
 	<br /> ${view.bcontents}
 	<br />
+		
 		
 	<span>파일 목록</span>
 	<div style="border: 1px solid #dbdbdb;">
